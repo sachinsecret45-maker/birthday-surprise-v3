@@ -1,0 +1,6812 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   ROOT
+========================================= */
+
+:root {
+    --black: #050505;
+    --dark: #0b0b12;
+    --yellow: #f5c518;
+    --white: #ffffff;
+    --gray: #a8a8b3;
+
+    /* Birthday-world accent palette (already used as literals
+       throughout — aliased here so new code has one source of truth) */
+    --pink-deep: #e84c9b;
+    --pink-strong: #ed3f91;
+    --pink-soft: #ffb7c5;
+    --pink-mid: #f6a9cf;
+    --purple-soft: #dca9df;
+
+    /* =========================================
+       BUTTON SYSTEM — shared design tokens
+       Used by every primary call-to-action button
+       across both worlds (Batman + Birthday).
+       Each world keeps its own color identity;
+       geometry, motion and touch-target rules
+       stay consistent.
+    ========================================= */
+    --btn-radius-pill: 999px;
+    --btn-height-primary: 60px;
+    --btn-min-touch: 48px;
+    --btn-font-weight: 900;
+    --btn-letter-spacing: 0.3px;
+    --btn-transition:
+        transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease,
+        opacity 0.3s ease;
+    --btn-active-scale: 0.96;
+    --btn-focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.65);
+    --btn-disabled-opacity: 0.5;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100dvh;
+
+    background: var(--black);
+    color: var(--white);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow: hidden;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+#app {
+    width: 100%;
+    min-height: 100dvh;
+}
+
+
+/* =========================================
+   SCREEN
+========================================= */
+
+.screen {
+    position: relative;
+
+    width: 100%;
+    min-height: 100dvh;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        max(24px, env(safe-area-inset-top))
+        24px
+        max(24px, env(safe-area-inset-bottom))
+        24px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================================
+   START SCREEN
+========================================= */
+
+#start-screen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #161620 0%,
+            #08080c 45%,
+            #020203 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* Batman-style spotlight */
+
+#start-screen::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90vw;
+    height: 90vw;
+
+    max-width: 500px;
+    max-height: 500px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245, 197, 24, 0.08),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   START CONTENT
+========================================= */
+
+.start-content {
+
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   BAT SYMBOL
+========================================= */
+
+.bat-symbol {
+
+    font-size: 64px;
+
+    margin-bottom: 22px;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(245, 197, 24, 0.35)
+        );
+
+    animation:
+        batFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   CLASSIFIED
+========================================= */
+
+.classified {
+
+    color: var(--yellow);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.start-content h1 {
+
+    font-size: clamp(32px, 9vw, 48px);
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.start-text {
+
+    max-width: 320px;
+
+    color: var(--gray);
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    margin-bottom: 36px;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.primary-btn {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    min-height: 54px;
+
+    padding: 0 30px;
+
+    border: 1px solid rgba(245, 197, 24, 0.6);
+
+    border-radius: 999px;
+
+    background: var(--yellow);
+
+    color: #050505;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.primary-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 197, 24, 0.45);
+}
+
+
+/* Desktop hover */
+
+@media (hover: hover) {
+
+    .primary-btn:hover {
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 30px
+            rgba(245, 197, 24, 0.25);
+    }
+}
+
+
+/* Mobile tap */
+
+.primary-btn:active {
+
+    transform: scale(0.95);
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes batFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    .screen {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .bat-symbol {
+        font-size: 54px;
+    }
+
+    .start-content h1 {
+        font-size: 30px;
+    }
+
+    .start-text {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================
+   TABLETS / DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+
+    .screen {
+        padding: 40px;
+    }
+
+    .start-content {
+        max-width: 520px;
+    }
+}
+/* =========================================
+   BATMAN VIDEO SCREEN
+========================================= */
+
+#batman-screen {
+    padding: 0;
+    background: #000;
+    overflow: hidden;
+}
+
+
+/* Full-screen video */
+
+.batman-video {
+    width: 100%;
+    height: 100dvh;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #000;
+}
+/* =========================================
+   BATMAN MESSAGE SCREEN
+========================================= */
+
+#message-screen {
+    background:
+        radial-gradient(
+            circle at center,
+            #181822 0%,
+            #08080c 50%,
+            #020203 100%
+        );
+
+    text-align: center;
+}
+
+
+.message-content {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.message-bat {
+    font-size: 64px;
+
+    margin-bottom: 20px;
+
+    animation: batFloat 3s ease-in-out infinite;
+}
+
+
+.message-label {
+    color: var(--yellow);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 16px;
+}
+
+
+.message-content h2 {
+    font-size: clamp(30px, 8vw, 44px);
+
+    line-height: 1.15;
+
+    margin-bottom: 18px;
+}
+
+
+.message-text {
+    color: var(--gray);
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* =========================================
+   SECRET VAULT SCREEN
+========================================= */
+
+#vault-screen {
+    background:
+        radial-gradient(
+            circle at center,
+            #181822 0%,
+            #08080c 50%,
+            #020203 100%
+        );
+
+    text-align: center;
+}
+
+
+.vault-content {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.vault-icon {
+    font-size: 64px;
+
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(245, 197, 24, 0.25)
+        );
+
+    animation:
+        batFloat 3s ease-in-out infinite;
+}
+
+
+.vault-label {
+    color: var(--yellow);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 16px;
+}
+
+
+.vault-content h2 {
+    font-size: clamp(32px, 8vw, 44px);
+
+    line-height: 1.15;
+
+    margin-bottom: 14px;
+}
+
+
+.vault-text {
+    color: var(--gray);
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================
+   PASSWORD INPUT
+========================================= */
+
+#password-input {
+
+    width: 100%;
+    max-width: 300px;
+
+    height: 56px;
+
+    padding: 0 20px;
+
+    border: 1px solid rgba(245, 197, 24, 0.35);
+
+    border-radius: 16px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: var(--white);
+
+    font-size: 18px;
+
+    text-align: center;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#password-input::placeholder {
+    color: #777783;
+
+    letter-spacing: 2px;
+}
+
+
+#password-input:focus {
+
+    border-color: var(--yellow);
+
+    box-shadow:
+        0 0 20px rgba(245, 197, 24, 0.12);
+}
+
+
+/* =========================================
+   UNLOCK BUTTON
+========================================= */
+
+#unlock-btn {
+    width: 100%;
+    max-width: 300px;
+}
+/* =========================================
+   COCKROACH GAME
+========================================= */
+
+#game-screen {
+    padding: 20px;
+    background:
+        radial-gradient(
+            circle at center,
+            #17171f 0%,
+            #08080c 55%,
+            #020203 100%
+        );
+
+    text-align: center;
+    overflow: hidden;
+}
+
+
+.game-content {
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.game-label {
+    color: var(--yellow);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+}
+
+
+.game-content h2 {
+    font-size: clamp(30px, 8vw, 42px);
+
+    line-height: 1.15;
+
+    margin-bottom: 12px;
+}
+
+
+.game-instruction {
+    color: var(--gray);
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    max-width: 320px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   SCORE
+========================================= */
+
+.game-score {
+    color: var(--white);
+
+    font-size: 18px;
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+
+#game-score {
+    color: var(--yellow);
+
+    font-size: 24px;
+}
+
+
+/* =========================================
+   GAME AREA
+========================================= */
+
+#game-area {
+    position: relative;
+
+    width: 100%;
+    height: 55dvh;
+
+    min-height: 300px;
+    max-height: 500px;
+
+    border: 1px solid rgba(245, 197, 24, 0.18);
+
+    border-radius: 24px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.035),
+            rgba(0, 0, 0, 0.25)
+        );
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   RADIOACTIVE COCKROACH GAME — V2
+========================================= */
+
+#game-screen {
+    padding: 18px;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(40, 255, 100, 0.06),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at center,
+            #10151a 0%,
+            #06090c 55%,
+            #020304 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   GAME CONTENT
+========================================= */
+
+.game-content {
+    width: 100%;
+    max-width: 480px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   SECURITY LABEL
+========================================= */
+
+.game-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 13px;
+
+    border: 1px solid rgba(255, 80, 80, 0.25);
+    border-radius: 999px;
+
+    background: rgba(255, 60, 60, 0.06);
+
+    color: #ffcc33;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.game-content h2 {
+    max-width: 340px;
+
+    font-size: clamp(28px, 8vw, 40px);
+
+    line-height: 1.08;
+
+    text-align: center;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   INSTRUCTION
+========================================= */
+
+.game-instruction {
+    max-width: 310px;
+
+    color: #aeb5bd;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    margin-bottom: 16px;
+}
+
+
+/* Highlight radioactive */
+
+.game-instruction::first-letter {
+    font-size: 18px;
+}
+
+
+/* =========================================
+   SCORE HUD
+========================================= */
+
+.game-score {
+    min-width: 150px;
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(245, 197, 24, 0.25);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    margin-bottom: 16px;
+}
+
+
+#game-score {
+    color: #7dff6a;
+
+    font-size: 22px;
+
+    margin: 0 3px;
+}
+
+
+/* =========================================
+   GAME ARENA
+========================================= */
+
+#game-area {
+    position: relative;
+
+    width: 100%;
+    height: 52dvh;
+
+    min-height: 310px;
+    max-height: 470px;
+
+    border: 1px solid rgba(125, 255, 106, 0.18);
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(125, 255, 106, 0.025),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(0, 0, 0, 0.18)
+        );
+
+    box-shadow:
+        inset 0 0 50px rgba(0, 0, 0, 0.45),
+        0 12px 35px rgba(0, 0, 0, 0.3);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   ARENA GRID
+========================================= */
+
+#game-area::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(125, 255, 106, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(125, 255, 106, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 38px 38px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   ARENA CORNERS
+========================================= */
+
+#game-area::after {
+
+    content: "SECURITY ZONE";
+
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    color: rgba(125, 255, 106, 0.25);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   COCKROACH BASE
+========================================= */
+
+.cockroach {
+
+    position: absolute;
+
+    z-index: 5;
+
+    width: 58px;
+    height: 58px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    font-size: 34px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transform:
+        translate(-50%, -50%);
+
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color: transparent;
+
+    user-select: none;
+
+    transition:
+        left 0.2s ease,
+        top 0.2s ease,
+        transform 0.12s ease;
+}
+
+
+/* =========================================
+   NORMAL COCKROACH
+========================================= */
+
+.normal-cockroach {
+
+    opacity: 0.9;
+
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================
+   RADIOACTIVE TARGET
+========================================= */
+
+.radioactive-cockroach {
+
+    width: 66px;
+    height: 66px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(90, 255, 70, 0.18),
+            rgba(40, 255, 80, 0.03) 65%,
+            transparent 70%
+        );
+
+    font-size: 40px;
+
+    box-shadow:
+        0 0 18px rgba(70, 255, 80, 0.35);
+
+    animation:
+        radioactivePulse 1.2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   RADIOACTIVE PULSE
+========================================= */
+
+@keyframes radioactivePulse {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+    }
+}
+
+
+/* =========================================
+   TAP EFFECT
+========================================= */
+
+.cockroach:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.72);
+}
+
+
+/* =========================================
+   INITIAL POSITIONS
+========================================= */
+
+.cockroach:nth-child(1) {
+    left: 18%;
+    top: 20%;
+}
+
+.cockroach:nth-child(2) {
+    left: 76%;
+    top: 24%;
+}
+
+.cockroach:nth-child(3) {
+    left: 50%;
+    top: 48%;
+}
+
+.cockroach:nth-child(4) {
+    left: 22%;
+    top: 68%;
+}
+
+.cockroach:nth-child(5) {
+    left: 78%;
+    top: 72%;
+}
+
+.cockroach:nth-child(6) {
+    left: 50%;
+    top: 84%;
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    #game-screen {
+        padding: 14px;
+    }
+
+    #game-area {
+        height: 50dvh;
+        min-height: 290px;
+    }
+
+    .cockroach {
+        width: 54px;
+        height: 54px;
+
+        font-size: 31px;
+    }
+
+    .radioactive-cockroach {
+        width: 62px;
+        height: 62px;
+
+        font-size: 37px;
+    }
+}
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    #game-area {
+        height: 50dvh;
+        min-height: 280px;
+    }
+
+    #cockroach {
+        width: 58px;
+        height: 58px;
+
+        font-size: 38px;
+    }
+}
+/* =========================================
+   REALISTIC COCKROACH IMAGES
+========================================= */
+
+.cockroach img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0, 0, 0, 0.55));
+}
+
+
+/* Normal cockroach */
+
+.normal-cockroach img {
+    width: 58px;
+    height: 58px;
+}
+
+
+/* Radioactive cockroach */
+
+.radioactive-cockroach img {
+    width: 64px;
+    height: 64px;
+
+    filter:
+        drop-shadow(0 0 5px rgba(80, 255, 80, 0.75))
+        drop-shadow(0 6px 6px rgba(0, 0, 0, 0.6));
+}
+
+
+/* Remove button appearance */
+
+.cockroach {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 360px) {
+
+    .normal-cockroach img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .radioactive-cockroach img {
+        width: 64px;
+        height: 64px;
+    }
+}
+/* =========================================
+   SURPRISE UNLOCKED SCREEN
+========================================= */
+
+#unlock-screen {
+    position: relative;
+
+    padding: 28px 20px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(255, 215, 70, 0.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 255, 255, 0.035),
+            transparent 55%
+        ),
+        #050507;
+}
+
+
+/* =========================================
+   UNLOCK CONTENT
+========================================= */
+
+.unlock-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    animation:
+        unlockEntrance 0.8s ease both;
+}
+
+
+/* =========================================
+   GLOW
+========================================= */
+
+.unlock-glow {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 210, 50, 0.22),
+            transparent 68%
+        );
+
+    filter: blur(12px);
+
+    pointer-events: none;
+
+    animation:
+        unlockGlow 2.5s ease-in-out infinite;
+}
+
+
+/* =========================================
+   LOCK ICON
+========================================= */
+
+.unlock-icon {
+    position: relative;
+
+    width: 92px;
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 24px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 60, 0.18),
+            rgba(255, 215, 60, 0.035)
+        );
+
+    border: 1px solid rgba(255, 215, 60, 0.45);
+
+    box-shadow:
+        0 0 25px rgba(255, 215, 60, 0.25),
+        inset 0 0 20px rgba(255, 215, 60, 0.08);
+
+    font-size: 48px;
+
+    animation:
+        unlockIcon 1.2s ease both;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.unlock-label {
+    margin: 0 0 14px;
+
+    color: #ffd21f;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.unlock-content h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(34px, 10vw, 52px);
+
+    line-height: 1.05;
+
+    letter-spacing: -1px;
+}
+
+
+/* Highlight "Unlocked!" */
+
+.unlock-content h2 span {
+    display: block;
+
+    margin-top: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd21f,
+            #fff0a0,
+            #ffd21f
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    background-size: 200% auto;
+
+    animation:
+        goldShimmer 2.5s linear infinite;
+}
+
+
+/* =========================================
+   MAIN TEXT
+========================================= */
+
+.unlock-text {
+    margin: 20px 0 6px;
+
+    color: #e4e4e8;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SUBTEXT
+========================================= */
+
+.unlock-subtext {
+    margin: 0;
+
+    color: #92929d;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.unlock-divider {
+    width: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin: 26px 0;
+    
+    color: #ffd21f;
+
+    font-size: 13px;
+}
+
+
+.unlock-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 210, 31, 0.55)
+        );
+}
+
+
+.unlock-divider span:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 210, 31, 0.55),
+            transparent
+        );
+}
+
+
+/* =========================================
+   OPEN SURPRISE BUTTON
+========================================= */
+
+.unlock-btn {
+    min-width: 230px;
+
+    margin-top: 2px;
+
+    box-shadow:
+        0 8px 30px rgba(255, 200, 30, 0.18);
+
+    animation:
+        buttonPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes unlockEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes unlockIcon {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.5)
+            rotate(-15deg);
+    }
+
+    70% {
+        transform:
+            scale(1.08)
+            rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+@keyframes unlockGlow {
+
+    0%,
+    100% {
+        opacity: 0.55;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+}
+
+
+@keyframes goldShimmer {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+
+@keyframes buttonPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    #unlock-screen {
+        padding: 22px 16px;
+    }
+
+    .unlock-icon {
+        width: 78px;
+        height: 78px;
+
+        font-size: 40px;
+
+        margin-bottom: 20px;
+    }
+
+    .unlock-content h2 {
+        font-size: 34px;
+    }
+
+    .unlock-text {
+        font-size: 15px;
+    }
+
+    .unlock-subtext {
+        font-size: 13px;
+    }
+
+    .unlock-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+/* =========================================
+   UNLOCK SCREEN DISPLAY FIX
+========================================= */
+
+#unlock-screen.active {
+    display: flex !important;
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    box-sizing: border-box;
+}
+
+
+/* Make sure the content is visible */
+
+#unlock-screen.active .unlock-content {
+    display: flex !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* Make sure the glow doesn't cover the content */
+
+#unlock-screen.active .unlock-glow {
+    display: block;
+}
+/* =========================================
+   BIRTHDAY WORLD
+   MOBILE ONLY
+========================================= */
+
+.birthday-screen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px 18px;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(190, 130, 255, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #ffc8dc,
+            #f7b8d8 45%,
+            #d9b8ef
+        );
+
+    z-index: 10000;
+}
+
+
+/* =========================================
+   ACTIVE WELCOME SCREEN
+========================================= */
+
+.birthday-screen.active {
+    display: flex;
+}
+
+
+/* =========================================
+   WELCOME CARD
+========================================= */
+
+.welcome-card {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+    max-width: 330px;
+
+    padding: 38px 24px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.22);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 50px rgba(160, 80, 140, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    animation:
+        welcomeCardIn 1s ease both;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.welcome-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 8px;
+
+    animation:
+        welcomeFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.welcome-card h1 {
+
+    margin: 0 0 18px;
+
+    color: #ffffff;
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.welcome-name {
+
+    margin: 0 0 22px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.welcome-text {
+
+    margin: 0 auto 26px;
+
+    max-width: 280px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1.45;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   SURPRISE MESSAGE
+========================================= */
+
+.welcome-message {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    border: none;
+    outline: none;
+
+    padding: 18px 14px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    color: #e84c9b;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(190, 80, 140, 0.12);
+
+    transition: var(--btn-transition);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.welcome-message:active {
+
+    transform: scale(var(--btn-active-scale));
+}
+
+
+.welcome-message:focus-visible {
+
+    box-shadow:
+        0 8px 25px rgba(190, 80, 140, 0.12),
+        var(--btn-focus-ring);
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.floating-hearts {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+.floating-hearts span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 20px;
+
+    opacity: 0.7;
+
+    animation:
+        heartRise linear infinite;
+}
+
+
+.floating-hearts span:nth-child(1) {
+    left: 8%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 25%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 48%;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 72%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 90%;
+    animation-duration: 9s;
+    animation-delay: 4s;
+}
+
+
+/* =========================================
+   FLOATING GLITTERS
+========================================= */
+
+.floating-glitters {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.floating-glitters span {
+
+    position: absolute;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 16px;
+
+    animation:
+        glitterFloat ease-in-out infinite;
+}
+
+
+.floating-glitters span:nth-child(1) {
+    top: 12%;
+    left: 15%;
+    animation-duration: 3s;
+}
+
+.floating-glitters span:nth-child(2) {
+    top: 22%;
+    right: 14%;
+    animation-duration: 4s;
+}
+
+.floating-glitters span:nth-child(3) {
+    top: 45%;
+    left: 8%;
+    animation-duration: 3.5s;
+}
+
+.floating-glitters span:nth-child(4) {
+    top: 62%;
+    right: 10%;
+    animation-duration: 4.5s;
+}
+
+.floating-glitters span:nth-child(5) {
+    bottom: 15%;
+    left: 20%;
+    animation-duration: 3s;
+}
+
+.floating-glitters span:nth-child(6) {
+    bottom: 10%;
+    right: 25%;
+    animation-duration: 5s;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes welcomeCardIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(35px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes welcomeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+@keyframes heartRise {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes glitterFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(0.7);
+
+        opacity: 0.3;
+    }
+
+    50% {
+        transform:
+            translateY(-15px)
+            scale(1.2);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   MOBILE SAFETY
+========================================= */
+
+@media (max-width: 360px) {
+
+    .birthday-screen {
+        padding: 18px 14px;
+    }
+
+    .welcome-card {
+        max-width: 315px;
+        padding: 32px 20px;
+    }
+
+    .welcome-card h1 {
+        font-size: 38px;
+    }
+
+    .welcome-name {
+        font-size: 18px;
+    }
+
+    .welcome-text {
+        font-size: 16px;
+    }
+
+    .welcome-message {
+        font-size: 15px;
+    }
+}
+/* =========================================
+   SNAPCHAT STORY
+   MOBILE ONLY
+========================================= */
+
+#story-screen {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    align-items: flex-start;
+
+    padding: 28px 16px 40px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   STORY PAGE
+========================================= */
+
+.story-page {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 360px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.story-header {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-bottom: 28px;
+
+    animation:
+        storyHeaderIn 0.8s ease both;
+}
+
+
+.story-phone {
+
+    font-size: 42px;
+
+    margin-bottom: 4px;
+
+    animation:
+        storyPhoneFloat 3s ease-in-out infinite;
+}
+
+
+.story-header h1 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+
+.story-heart {
+
+    margin-top: 5px;
+
+    font-size: 38px;
+
+    animation:
+        heartBeat 2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   STORY CARDS
+========================================= */
+
+.story-cards {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   INDIVIDUAL CARD
+========================================= */
+
+.story-card {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 22px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 26px;
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    color: #ffffff;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(150, 70, 130, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.story-card:active {
+
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   CARD TITLE
+========================================= */
+
+.story-card-title {
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   TAP LABEL
+========================================= */
+
+.story-tap {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   BLOOMING STORY TEXT
+========================================= */
+
+.story-card-text {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    margin-top: 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    transition:
+        max-height 0.55s ease,
+        opacity 0.45s ease,
+        margin-top 0.45s ease;
+}
+
+
+/* =========================================
+   ACTIVE CARD
+========================================= */
+
+.story-card.active {
+
+    background:
+        rgba(255, 255, 255, 0.30);
+
+    box-shadow:
+        0 16px 35px rgba(180, 70, 140, 0.18),
+        0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+
+.story-card.active .story-card-text {
+
+    max-height: 120px;
+
+    margin-top: 14px;
+
+    opacity: 1;
+
+    animation:
+        storyBloom 0.55s ease both;
+}
+
+
+.story-card.active .story-tap {
+
+    opacity: 0.4;
+}
+
+
+/* =========================================
+   CONTINUE BUTTON
+   (was orphaned as .story-continue-btn —
+   the HTML element actually carries
+   class="journey-btn", so this selector
+   never matched anything. Renamed + rebuilt
+   on the shared button tokens to match its
+   sibling CTAs: memories-continue-btn,
+   blow-candle-btn, final-home-btn.)
+========================================= */
+
+.journey-btn {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 100%;
+
+    min-height: var(--btn-height-primary);
+
+    margin-top: 28px;
+
+    padding: 0 22px;
+
+    border: none;
+    outline: none;
+
+    border-radius: var(--btn-radius-pill);
+
+    background: #ffffff;
+
+    color: var(--pink-deep);
+
+    font-size: 17px;
+
+    font-weight: var(--btn-font-weight);
+
+    letter-spacing: var(--btn-letter-spacing);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px rgba(180, 70, 140, 0.22);
+
+    transition: var(--btn-transition);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.journey-btn:active {
+
+    transform: scale(var(--btn-active-scale));
+
+    box-shadow:
+        0 6px 16px rgba(180, 70, 140, 0.18);
+}
+
+
+.journey-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow:
+        0 12px 28px rgba(180, 70, 140, 0.22),
+        var(--btn-focus-ring);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes storyHeaderIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes storyPhoneFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+
+@keyframes storyBloom {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-8px)
+            scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    #story-screen {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .story-header h1 {
+        font-size: 31px;
+    }
+
+    .story-card {
+        padding: 20px 18px;
+    }
+
+    .story-card-title {
+        font-size: 21px;
+    }
+
+    .story-card-text {
+        font-size: 15px;
+    }
+}
+/* =========================================
+   BEAUTIFUL MEMORIES PAGE
+========================================= */
+
+#memories-screen {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,255,255,0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #ffb7c5 0%,
+            #f6a9cf 50%,
+            #dca9df 100%
+        );
+
+    padding: 20px 14px 35px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.memories-page {
+
+    width: 100%;
+    max-width: 430px;
+
+    margin: 0 auto;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.memories-title {
+
+    text-align: center;
+
+    margin-top: 0;
+    margin-bottom: 12px;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+.memories-title h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: clamp(
+        34px,
+        9vw,
+        48px
+    );
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 3px 10px rgba(180,70,130,0.15);
+}
+
+
+/* =========================================
+   POLAROID ROWS
+========================================= */
+
+.memory-polaroids {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.top-polaroids {
+    margin-top: 8px;
+}
+
+
+.bottom-polaroids {
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   POLAROID
+========================================= */
+
+.memory-polaroid {
+
+    width: 76px;
+    height: 100px;
+
+    background: rgba(255,255,255,0.94);
+
+    padding: 5px;
+
+    border-radius: 3px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 8px 18px rgba(80,30,70,0.20);
+
+    transform:
+        rotate(-2deg);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.memory-polaroid:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+
+.memory-polaroid:nth-child(3) {
+    transform: rotate(2deg);
+}
+
+
+.bottom-polaroids .memory-polaroid:nth-child(1) {
+    transform: rotate(2deg);
+}
+
+
+.bottom-polaroids .memory-polaroid:nth-child(2) {
+    transform: rotate(-1deg);
+}
+
+
+.bottom-polaroids .memory-polaroid:nth-child(3) {
+    transform: rotate(-2deg);
+}
+
+
+.memory-polaroid img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 1px;
+}
+
+
+/* =========================================
+   CENTER MEMORY
+========================================= */
+
+.main-memory {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 14px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   LARGE HEART
+   Real heart silhouette via SVG clipPath —
+   NOT a rotated square, NOT circles.
+========================================= */
+
+.heart-photo {
+
+    width: 265px;
+    height: 265px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    filter:
+        drop-shadow(0 15px 30px rgba(130,45,100,0.35));
+}
+
+
+/* The SVG holding the clipPath definition takes no visual space */
+
+.heart-svg-defs {
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HEART IMAGE
+   The photo itself is clipped into a true
+   heart silhouette.
+========================================= */
+
+.heart-photo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: white;
+
+    -webkit-clip-path: url(#heartClip);
+    clip-path: url(#heartClip);
+}
+
+
+/* =========================================
+   HEART DECORATIONS
+========================================= */
+
+.heart-decoration {
+
+    position: absolute;
+
+    color: #ff477e;
+
+    font-size: 55px;
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1;
+
+    z-index: 4;
+
+    text-shadow:
+        0 3px 8px rgba(255,70,130,0.2);
+}
+
+
+.heart-left {
+
+    left: 4px;
+
+    top: 220px;
+
+    transform: rotate(-15deg);
+}
+
+
+.heart-right {
+
+    right: 4px;
+
+    top: 220px;
+
+    transform: rotate(15deg);
+}
+
+
+/* =========================================
+   MEMORY CAPTION
+========================================= */
+
+.memory-caption {
+
+    width: 92%;
+
+    text-align: center;
+
+    margin-top: 10px;
+
+    min-height: 92px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+.memory-caption h3 {
+
+    margin: 0 0 6px;
+
+    color: white;
+
+    font-size: 27px;
+
+    line-height: 1.1;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 2px 8px rgba(150,50,100,0.12);
+}
+
+
+.memory-caption p {
+
+    margin: 0 auto;
+
+    max-width: 340px;
+
+    color: white;
+
+    font-size: 16px;
+
+    line-height: 1.45;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   DOTS
+========================================= */
+
+.memory-dots {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin: 8px 0 12px;
+}
+
+
+.memory-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.55);
+
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.memory-dot.active {
+
+    width: 25px;
+
+    border-radius: 20px;
+
+    background: white;
+}
+
+
+/* =========================================
+   CONTINUE BUTTON
+========================================= */
+
+.memories-continue-btn {
+
+    width: calc(100% - 40px);
+
+    max-width: 360px;
+
+    min-height: 62px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff5fb
+        );
+
+    color: #ed3f91;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(170,55,120,0.22);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.memories-continue-btn:active {
+
+    transform: scale(0.96);
+
+    box-shadow:
+        0 6px 16px rgba(170,55,120,0.20);
+}
+
+
+.memories-continue-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow:
+        0 12px 30px rgba(170,55,120,0.22),
+        var(--btn-focus-ring);
+}
+
+
+/* =========================================
+   MEMORY FADE
+========================================= */
+
+#memory-heart-image {
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+
+#memory-heart-image.memory-fade-out {
+
+    opacity: 0;
+
+    transform:
+        scale(0.94);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    #memories-screen {
+
+        padding-left: 8px;
+        padding-right: 8px;
+
+    }
+
+
+    .memory-polaroids {
+
+        padding-left: 12px;
+        padding-right: 12px;
+
+    }
+
+
+    .memory-polaroid {
+
+        width: 68px;
+        height: 92px;
+
+    }
+
+
+    .heart-photo {
+
+        width: 235px;
+        height: 235px;
+
+    }
+
+
+    .heart-decoration {
+
+        font-size: 46px;
+
+    }
+
+
+    .heart-left,
+    .heart-right {
+
+        top: 205px;
+
+    }
+
+
+    .memory-caption h3 {
+
+        font-size: 24px;
+
+    }
+
+
+    .memory-caption p {
+
+        font-size: 14px;
+
+    }
+
+
+    .memories-continue-btn {
+
+        width: calc(100% - 25px);
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+/* =========================================================
+   CANDLE SCREEN
+========================================================= */
+
+#candle-screen {
+    position: relative;
+
+    min-height: 100dvh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255,255,255,0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #ffb7c5 0%,
+            #f29fce 50%,
+            #d6a3ea 100%
+        );
+
+    padding: 26px 18px 40px;
+
+    box-sizing: border-box;
+}
+
+
+.candle-page {
+
+    width: 100%;
+    max-width: 430px;
+
+    margin: 0 auto;
+
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   CANDLE TITLE
+========================================= */
+
+.candle-title {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+.candle-label {
+
+    margin: 0 0 8px;
+
+    color: rgba(255,255,255,0.9);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 2px 6px rgba(150,50,100,0.2);
+}
+
+
+.candle-title h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: clamp(28px, 8vw, 38px);
+
+    line-height: 1.15;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+
+    text-shadow:
+        0 3px 10px rgba(180,70,130,0.2);
+}
+
+
+/* =========================================
+   CAKE
+========================================= */
+
+.cake-wrap {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 10px 0 26px;
+}
+
+
+.candles-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 34px;
+
+    z-index: 4;
+
+    margin-bottom: -6px;
+}
+
+
+.candle {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.candle-stick {
+
+    width: 12px;
+    height: 46px;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff2f8,
+            #ffd3e8
+        );
+
+    box-shadow:
+        inset -2px 0 3px rgba(210,90,150,0.35),
+        0 4px 10px rgba(150,40,100,0.25);
+}
+
+
+.wick {
+
+    width: 2px;
+    height: 8px;
+
+    background: #6b4a3a;
+
+    border-radius: 1px;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+
+.flame-wrap {
+
+    position: relative;
+
+    width: 16px;
+    height: 26px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+.flame {
+
+    width: 11px;
+    height: 22px;
+
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+
+    background:
+        radial-gradient(
+            circle at 50% 75%,
+            #fff6c8 0%,
+            #ffd35c 35%,
+            #ff8a3d 68%,
+            #ff5c3d 100%
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,170,60,0.85),
+        0 0 22px rgba(255,120,60,0.55);
+
+    animation:
+        flameFlicker 1.6s ease-in-out infinite;
+
+    transform-origin: bottom center;
+}
+
+
+.flame-glow {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,200,90,0.45),
+            transparent 70%
+        );
+
+    animation:
+        flameGlowPulse 1.6s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes flameFlicker {
+
+    0%, 100% {
+        transform:
+            scaleY(1) scaleX(1) rotate(0deg);
+    }
+
+    25% {
+        transform:
+            scaleY(1.08) scaleX(0.94) rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            scaleY(0.95) scaleX(1.05) rotate(2deg);
+    }
+
+    75% {
+        transform:
+            scaleY(1.05) scaleX(0.96) rotate(-1deg);
+    }
+}
+
+
+@keyframes flameGlowPulse {
+
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* Candle blown out state */
+
+.candle.blown-out .flame-wrap {
+    opacity: 0;
+    transform: translateY(4px) scale(0.5);
+}
+
+.candle.blown-out .wick {
+    opacity: 0.55;
+}
+
+.candle.blown-out .flame-glow {
+    opacity: 0;
+}
+
+
+/* =========================================
+   CAKE BODY
+========================================= */
+
+.cake {
+
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 3;
+}
+
+
+.cake-top {
+
+    position: relative;
+
+    width: 220px;
+    height: 26px;
+
+    background: #fff0f6;
+
+    border-radius: 50% 50% 8px 8px / 60% 60% 8px 8px;
+
+    box-shadow:
+        inset 0 -3px 6px rgba(230,140,180,0.25);
+
+    z-index: 3;
+}
+
+
+.drip {
+
+    position: absolute;
+
+    bottom: -10px;
+
+    width: 16px;
+    height: 20px;
+
+    background: #ffd3e6;
+
+    border-radius: 0 0 50% 50%;
+}
+
+
+.drip-1 { left: 18px; }
+.drip-2 { left: 68px; height: 26px; }
+.drip-3 { left: 128px; height: 22px; }
+.drip-4 { left: 176px; height: 18px; }
+
+
+.cake-layer {
+
+    width: 240px;
+    height: 54px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffb9d6,
+            #f78fc0
+        );
+
+    box-shadow:
+        inset 0 4px 8px rgba(255,255,255,0.35),
+        inset 0 -6px 10px rgba(190,60,120,0.25);
+
+    margin-top: -4px;
+}
+
+
+.cake-layer-2 {
+
+    width: 264px;
+    height: 60px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7a9cf,
+            #e884b9
+        );
+
+    border-radius: 0 0 10px 10px;
+}
+
+
+.cake-plate {
+
+    width: 292px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #ffe3f0
+        );
+
+    box-shadow:
+        0 10px 20px rgba(140,40,100,0.3);
+
+    margin-top: -2px;
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.candle-countdown {
+
+    font-size: 64px;
+
+    font-weight: 900;
+
+    color: white;
+
+    line-height: 1;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 4px 14px rgba(150,40,100,0.35);
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    transform: scale(0.6);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.candle-countdown.show {
+
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+.candle-instruction {
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    margin-bottom: 22px;
+
+    opacity: 0.95;
+
+    text-shadow:
+        0 2px 6px rgba(150,40,100,0.2);
+}
+
+
+/* =========================================
+   BLOW BUTTON
+========================================= */
+
+.blow-candle-btn {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 88%;
+    max-width: 360px;
+
+    min-height: 60px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff5fb
+        );
+
+    color: #ed3f91;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(170,55,120,0.28);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.3s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.blow-candle-btn:active {
+
+    transform: scale(0.96);
+
+    box-shadow:
+        0 6px 16px rgba(170,55,120,0.22);
+}
+
+
+.blow-candle-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow:
+        0 12px 30px rgba(170,55,120,0.28),
+        var(--btn-focus-ring);
+}
+
+
+.blow-candle-btn.is-hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: scale(0.9);
+}
+
+
+/* =========================================================
+   FINAL BIRTHDAY PAGE
+   Photo collage surrounding the birthday message
+========================================================= */
+/* Prevent final screen from flashing before JS/CSS is ready */
+#final-screen {
+    visibility: hidden;
+}
+#final-screen {
+
+    position: relative;
+
+    min-height: 100dvh;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,255,255,0.28),
+            transparent 35%
+        ),
+        linear-gradient(
+            160deg,
+            #ffc8dc 0%,
+            #f2a8d6 48%,
+            #cfa0ea 100%
+        );
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.final-page {
+
+    position: relative;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   PHOTO COLLAGE
+========================================= */
+
+.final-polaroids {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   PHOTO FRAME
+========================================= */
+
+.final-polaroid {
+
+    position: absolute;
+
+    width: 68px;
+    height: 88px;
+
+    padding: 4px;
+
+    background: rgba(255,255,255,0.96);
+
+    border-radius: 5px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 18px rgba(80,30,70,0.22);
+
+    opacity: 1;
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.final-polaroid img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   TOP PHOTOS
+========================================= */
+
+.fp-1 {
+    top: 7%;
+    left: 7%;
+
+    transform: rotate(-7deg);
+}
+
+
+.fp-2 {
+    top: 12%;
+    right: 7%;
+
+    transform: rotate(7deg);
+}
+
+
+.fp-3 {
+    top: 25%;
+    left: 3%;
+
+    transform: rotate(-4deg);
+}
+
+
+.fp-4 {
+    top: 28%;
+    right: 3%;
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================================
+   BOTTOM PHOTOS
+========================================= */
+
+.fp-5 {
+    bottom: 25%;
+    left: 3%;
+
+    transform: rotate(5deg);
+}
+
+
+.fp-6 {
+    bottom: 28%;
+    right: 3%;
+
+    transform: rotate(-5deg);
+}
+
+
+.fp-7 {
+    bottom: 12%;
+    left: 7%;
+
+    transform: rotate(-6deg);
+}
+
+
+.fp-8 {
+    bottom: 7%;
+    right: 7%;
+
+    transform: rotate(7deg);
+}
+
+
+/* =========================================
+   CENTER CONTENT
+========================================= */
+
+.final-center-content {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 230px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   CAKE
+========================================= */
+
+.final-cake {
+
+    font-size: 52px;
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+    animation:
+        finalCakeFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   BIRTHDAY TITLE
+========================================= */
+
+.final-birthday-title {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 38px;
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    text-align: center;
+
+    text-shadow:
+        0 4px 12px rgba(150,50,110,0.25);
+}
+
+
+/* =========================================
+   SPARKLES
+========================================= */
+
+.final-sparkles {
+
+    margin-top: 18px;
+
+    font-size: 22px;
+
+    letter-spacing: 8px;
+
+    white-space: nowrap;
+
+    animation:
+        finalSparklePulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes finalCakeFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+@keyframes finalSparklePulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    .final-polaroid {
+
+        width: 62px;
+        height: 80px;
+    }
+
+
+    .final-center-content {
+
+        width: 215px;
+    }
+
+
+    .final-cake {
+
+        font-size: 46px;
+    }
+
+
+    .final-birthday-title {
+
+        font-size: 34px;
+    }
+
+
+    .final-sparkles {
+
+        font-size: 19px;
+
+        letter-spacing: 6px;
+    }
+}
+/*The joy beat between the candle wish and the
+   quieter final message. Auto-advances after a
+   few seconds — no button, this is one continuous
+   scene, not a page.
+========================================================= */
+
+#celebration-screen {
+    position: relative;
+
+    min-height: 100dvh;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(255,255,255,0.22),
+            transparent 45%
+        ),
+        linear-gradient(
+            160deg,
+            #ffc2da 0%,
+            #f0a0d4 45%,
+            #cf9de8 100%
+        );
+}
+
+
+.celebration-page {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================
+   SOFT GLOW
+========================================= */
+
+.celebration-glow {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 380px;
+    height: 380px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.55),
+            transparent 70%
+        );
+
+    animation:
+        celebrationGlowPulse 2.6s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+@keyframes celebrationGlowPulse {
+
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+
+/* =========================================
+   CONFETTI
+   Moderate count, soft pastel + one gold accent
+   thread (echoes the Batman-world gold). Elegant
+   drift, not a chaotic explosion.
+========================================= */
+
+.celebration-confetti {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+.celebration-confetti span {
+
+    position: absolute;
+
+    top: -20px;
+
+    width: 8px;
+    height: 14px;
+
+    border-radius: 2px;
+
+    opacity: 0;
+
+    animation:
+        confettiFall 3.2s ease-in infinite;
+}
+
+
+@keyframes confettiFall {
+
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    85% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(115vh) rotate(280deg);
+    }
+}
+
+
+.celebration-confetti span:nth-child(1)  { left: 4%;  background: var(--pink-soft); animation-delay: 0.0s; animation-duration: 3.0s; }
+.celebration-confetti span:nth-child(2)  { left: 12%; background: var(--purple-soft); animation-delay: 0.3s; animation-duration: 3.4s; }
+.celebration-confetti span:nth-child(3)  { left: 20%; background: #ffffff; animation-delay: 0.6s; animation-duration: 2.8s; }
+.celebration-confetti span:nth-child(4)  { left: 28%; background: var(--pink-mid); animation-delay: 0.15s; animation-duration: 3.6s; }
+.celebration-confetti span:nth-child(5)  { left: 36%; background: #f5d78a; animation-delay: 0.9s; animation-duration: 3.1s; }
+.celebration-confetti span:nth-child(6)  { left: 44%; background: var(--pink-soft); animation-delay: 0.45s; animation-duration: 2.9s; }
+.celebration-confetti span:nth-child(7)  { left: 52%; background: #ffffff; animation-delay: 1.1s; animation-duration: 3.3s; }
+.celebration-confetti span:nth-child(8)  { left: 60%; background: var(--purple-soft); animation-delay: 0.2s; animation-duration: 3.5s; }
+.celebration-confetti span:nth-child(9)  { left: 68%; background: var(--pink-mid); animation-delay: 0.75s; animation-duration: 2.7s; }
+.celebration-confetti span:nth-child(10) { left: 76%; background: #f5d78a; animation-delay: 0.35s; animation-duration: 3.2s; }
+.celebration-confetti span:nth-child(11) { left: 84%; background: var(--pink-soft); animation-delay: 1.0s; animation-duration: 3.0s; }
+.celebration-confetti span:nth-child(12) { left: 92%; background: #ffffff; animation-delay: 0.5s; animation-duration: 3.4s; }
+.celebration-confetti span:nth-child(13) { left: 8%;  background: var(--purple-soft); animation-delay: 1.3s; animation-duration: 2.9s; }
+.celebration-confetti span:nth-child(14) { left: 24%; background: #ffffff; animation-delay: 1.5s; animation-duration: 3.1s; }
+.celebration-confetti span:nth-child(15) { left: 40%; background: var(--pink-mid); animation-delay: 1.2s; animation-duration: 3.3s; }
+.celebration-confetti span:nth-child(16) { left: 56%; background: var(--pink-soft); animation-delay: 1.6s; animation-duration: 2.8s; }
+.celebration-confetti span:nth-child(17) { left: 72%; background: #f5d78a; animation-delay: 1.4s; animation-duration: 3.5s; }
+.celebration-confetti span:nth-child(18) { left: 88%; background: var(--purple-soft); animation-delay: 1.7s; animation-duration: 3.0s; }
+
+
+/* =========================================
+   PHOTO FLASHES
+   3 soft memory glimpses, staggered, brief.
+========================================= */
+
+.celebration-photo-flash {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.cf-photo {
+
+    position: absolute;
+
+    width: 84px;
+    height: 106px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    border: 4px solid rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 12px 26px rgba(120,40,90,0.28);
+
+    opacity: 0;
+}
+
+
+.cf-photo-1 {
+    top: 14%;
+    left: 8%;
+    transform: rotate(-9deg) scale(0.9);
+    animation: cfPhotoFlash 4.4s ease-in-out 0.4s infinite;
+}
+
+.cf-photo-2 {
+    top: 12%;
+    right: 7%;
+    transform: rotate(8deg) scale(0.9);
+    animation: cfPhotoFlash 4.4s ease-in-out 1.4s infinite;
+}
+
+.cf-photo-3 {
+    bottom: 12%;
+    left: 10%;
+    transform: rotate(6deg) scale(0.9);
+    animation: cfPhotoFlash 4.4s ease-in-out 2.4s infinite;
+}
+
+
+@keyframes cfPhotoFlash {
+
+    0%, 100% {
+        opacity: 0;
+    }
+
+    18%, 55% {
+        opacity: 0.9;
+    }
+
+    75% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.celebration-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    padding: 0 30px;
+}
+
+
+.celebration-icon {
+
+    font-size: 54px;
+
+    margin-bottom: 14px;
+
+    opacity: 0;
+
+    animation:
+        celebrationIconIn 0.7s ease 0.15s both;
+}
+
+
+@keyframes celebrationIconIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.4) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.celebration-headline {
+
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: clamp(36px, 11vw, 50px);
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+
+    text-shadow:
+        0 4px 16px rgba(160, 60, 120, 0.35);
+
+    opacity: 0;
+
+    animation:
+        celebrationHeadlineIn 0.8s ease 0.4s both;
+}
+
+
+@keyframes celebrationHeadlineIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.celebration-subtext {
+
+    margin: 0;
+
+    font-size: 26px;
+
+    letter-spacing: 6px;
+
+    opacity: 0;
+
+    animation:
+        celebrationSubtextIn 0.7s ease 0.85s both;
+}
+
+
+@keyframes celebrationSubtextIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 0.95;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* =========================================================
+   MUSIC TOGGLE (architecture only — see index.html note)
+   Stays fully inert (.is-hidden) unless app.js confirms a
+   real track loaded successfully. Sits above every screen,
+   styled to read against both the dark Batman world and the
+   light birthday world.
+========================================================= */
+
+.music-toggle-btn {
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    position: fixed;
+
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+
+    z-index: 999;
+
+    width: 42px;
+    height: 42px;
+
+    min-width: var(--btn-min-touch);
+    min-height: var(--btn-min-touch);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    outline: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.22);
+
+    transition: var(--btn-transition);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.music-toggle-btn.is-hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: scale(0.8);
+}
+
+
+.music-toggle-btn:active {
+
+    transform: scale(var(--btn-active-scale));
+}
+
+
+.music-toggle-btn:focus-visible {
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.22),
+        var(--btn-focus-ring);
+}
+
+
+.music-toggle-btn.is-muted {
+
+    opacity: 0.55;
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   Respect the user's OS-level preference site-wide. This
+   collapses every animation/transition to effectively
+   instant rather than removing them outright, so elements
+   still reach their intended end state (an entrance
+   animation still ends "visible", a reveal-line still ends
+   "revealed") — nothing gets stuck invisible.
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+
+    }
+
+}
+/* =========================================================
+   FINAL BIRTHDAY PAGE — DEFINITIVE VERSION
+   DO NOT ADD OLD FINAL-PAGE CSS AFTER THIS BLOCK
+========================================================= */
+
+
+/* =========================================================
+   MAIN SCREEN
+========================================================= */
+
+#final-screen {
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    min-height: 100dvh !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: none;
+
+    overflow: hidden !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,255,255,0.32) 0%,
+            rgba(255,255,255,0.08) 28%,
+            transparent 55%
+        ),
+        linear-gradient(
+            160deg,
+            #ffc8dc 0%,
+            #f4a9d1 48%,
+            #cfa0e8 100%
+        ) !important;
+
+    box-sizing: border-box !important;
+
+    z-index: 50000 !important;
+}
+
+
+/* ACTIVE FINAL SCREEN */
+
+#final-screen.active {
+
+    display: flex !important;
+    visibility: visible !important;
+
+}
+
+
+/* =========================================================
+   FINAL PAGE
+========================================================= */
+
+#final-screen .final-page {
+
+    position: relative !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    min-height: 100dvh !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   PHOTO COLLAGE CONTAINER
+========================================================= */
+
+#final-screen .final-photo-collage {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: visible !important;
+
+    pointer-events: none !important;
+
+    z-index: 20 !important;
+}
+
+
+/* =========================================================
+   PHOTO BASE
+========================================================= */
+
+#final-screen .final-photo {
+
+    position: absolute !important;
+
+    width: 72px !important;
+    height: 94px !important;
+
+    padding: 5px !important;
+
+    margin: 0 !important;
+
+    background: rgba(255,255,255,0.98) !important;
+
+    border: 2px solid rgba(30,20,30,0.9) !important;
+
+    border-radius: 3px !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+
+    display: block !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    box-shadow:
+        0 8px 20px rgba(70,30,70,0.25) !important;
+
+    z-index: 30 !important;
+}
+
+
+/* =========================================================
+   PHOTO IMAGE
+========================================================= */
+
+#final-screen .final-photo img {
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    object-fit: cover !important;
+
+    border-radius: 1px !important;
+
+    margin: 0 !important;
+}
+
+
+/* =========================================================
+   PHOTO 1 — TOP LEFT
+========================================================= */
+
+#final-screen .final-photo-1 {
+
+    top: 6% !important;
+    left: 8% !important;
+
+    transform: rotate(-7deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 2 — TOP RIGHT
+========================================================= */
+
+#final-screen .final-photo-2 {
+
+    top: 7% !important;
+    right: 8% !important;
+
+    transform: rotate(7deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 3 — UPPER LEFT
+========================================================= */
+
+#final-screen .final-photo-3 {
+
+    top: 27% !important;
+    left: 4% !important;
+
+    transform: rotate(-5deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 4 — UPPER RIGHT
+========================================================= */
+
+#final-screen .final-photo-4 {
+
+    top: 28% !important;
+    right: 4% !important;
+
+    transform: rotate(5deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 5 — LOWER LEFT
+========================================================= */
+
+#final-screen .final-photo-5 {
+
+    bottom: 27% !important;
+    left: 4% !important;
+
+    transform: rotate(5deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 6 — LOWER RIGHT
+========================================================= */
+
+#final-screen .final-photo-6 {
+
+    bottom: 28% !important;
+    right: 4% !important;
+
+    transform: rotate(-5deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 7 — BOTTOM LEFT
+========================================================= */
+
+#final-screen .final-photo-7 {
+
+    bottom: 7% !important;
+    left: 8% !important;
+
+    transform: rotate(-6deg) !important;
+}
+
+
+/* =========================================================
+   PHOTO 8 — BOTTOM RIGHT
+========================================================= */
+
+#final-screen .final-photo-8 {
+
+    bottom: 7% !important;
+    right: 8% !important;
+
+    transform: rotate(6deg) !important;
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+========================================================= */
+
+#final-screen .final-center {
+
+    position: absolute !important;
+
+    top: 50% !important;
+    left: 50% !important;
+
+    width: 230px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    z-index: 100 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+#final-screen .final-cake {
+
+    margin: 0 0 10px !important;
+
+    padding: 0 !important;
+
+    font-size: 48px !important;
+
+    line-height: 1 !important;
+
+    display: block !important;
+
+    animation:
+        finalCakeFloatNew 3s ease-in-out infinite !important;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+#final-screen .final-title {
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #ffffff !important;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif !important;
+
+    font-size: 38px !important;
+
+    line-height: 1.05 !important;
+
+    font-weight: 900 !important;
+
+    letter-spacing: -1px !important;
+
+    text-align: center !important;
+
+    text-shadow:
+        0 4px 12px rgba(120,40,100,0.30) !important;
+}
+
+
+/* =========================================================
+   CENTER DECORATION
+========================================================= */
+
+#final-screen .final-decorations {
+
+    margin-top: 14px !important;
+
+    padding: 0 !important;
+
+    font-size: 21px !important;
+
+    line-height: 1 !important;
+
+    letter-spacing: 7px !important;
+
+    white-space: nowrap !important;
+
+    animation:
+        finalDecorationPulseNew 2s ease-in-out infinite !important;
+}
+
+
+/* =========================================================
+   HEART SYSTEM
+========================================================= */
+
+#final-screen .final-floating-hearts {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: 8 !important;
+}
+
+
+#final-screen .final-floating-hearts span {
+
+    position: absolute !important;
+
+    display: block !important;
+
+    bottom: -60px !important;
+
+    font-size: 20px !important;
+
+    opacity: 0 !important;
+
+    animation:
+        finalHeartRiseNew 8s linear infinite !important;
+}
+
+
+/* Individual hearts */
+
+#final-screen .fh-1 {
+    left: 4% !important;
+    animation-delay: 0s !important;
+    animation-duration: 7s !important;
+}
+
+#final-screen .fh-2 {
+    left: 12% !important;
+    animation-delay: 1.5s !important;
+    animation-duration: 9s !important;
+}
+
+#final-screen .fh-3 {
+    left: 22% !important;
+    animation-delay: 3s !important;
+    animation-duration: 8s !important;
+}
+
+#final-screen .fh-4 {
+    left: 32% !important;
+    animation-delay: 0.8s !important;
+    animation-duration: 10s !important;
+}
+
+#final-screen .fh-5 {
+    left: 43% !important;
+    animation-delay: 2.2s !important;
+    animation-duration: 7.5s !important;
+}
+
+#final-screen .fh-6 {
+    left: 54% !important;
+    animation-delay: 4s !important;
+    animation-duration: 9s !important;
+}
+
+#final-screen .fh-7 {
+    left: 65% !important;
+    animation-delay: 1s !important;
+    animation-duration: 8.5s !important;
+}
+
+#final-screen .fh-8 {
+    left: 75% !important;
+    animation-delay: 2.8s !important;
+    animation-duration: 10s !important;
+}
+
+#final-screen .fh-9 {
+    left: 84% !important;
+    animation-delay: 4.5s !important;
+    animation-duration: 7s !important;
+}
+
+#final-screen .fh-10 {
+    left: 92% !important;
+    animation-delay: 1.8s !important;
+    animation-duration: 9s !important;
+}
+
+#final-screen .fh-11 {
+    left: 18% !important;
+    animation-delay: 5s !important;
+    animation-duration: 8s !important;
+}
+
+#final-screen .fh-12 {
+    left: 60% !important;
+    animation-delay: 5.5s !important;
+    animation-duration: 7.5s !important;
+}
+
+
+/* =========================================================
+   GLITTER SYSTEM
+========================================================= */
+
+#final-screen .final-floating-glitters {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: 7 !important;
+}
+
+
+#final-screen .final-floating-glitters span {
+
+    position: absolute !important;
+
+    display: block !important;
+
+    color: rgba(255,255,255,0.95) !important;
+
+    font-size: 17px !important;
+
+    opacity: 0.8 !important;
+
+    animation:
+        finalGlitterNew 2.5s ease-in-out infinite !important;
+}
+
+
+#final-screen .final-floating-glitters span:nth-child(1) {
+    top: 8% !important;
+    left: 28% !important;
+    animation-delay: 0s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(2) {
+    top: 14% !important;
+    right: 26% !important;
+    animation-delay: 0.4s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(3) {
+    top: 23% !important;
+    left: 18% !important;
+    animation-delay: 0.8s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(4) {
+    top: 31% !important;
+    right: 17% !important;
+    animation-delay: 1.2s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(5) {
+    top: 40% !important;
+    left: 9% !important;
+    animation-delay: 0.5s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(6) {
+    top: 45% !important;
+    right: 8% !important;
+    animation-delay: 1.6s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(7) {
+    top: 55% !important;
+    left: 15% !important;
+    animation-delay: 0.9s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(8) {
+    top: 58% !important;
+    right: 16% !important;
+    animation-delay: 1.9s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(9) {
+    top: 67% !important;
+    left: 8% !important;
+    animation-delay: 0.2s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(10) {
+    top: 70% !important;
+    right: 9% !important;
+    animation-delay: 1.1s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(11) {
+    top: 78% !important;
+    left: 25% !important;
+    animation-delay: 1.5s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(12) {
+    top: 82% !important;
+    right: 28% !important;
+    animation-delay: 0.7s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(13) {
+    top: 90% !important;
+    left: 45% !important;
+    animation-delay: 2s !important;
+}
+
+#final-screen .final-floating-glitters span:nth-child(14) {
+    top: 94% !important;
+    right: 43% !important;
+    animation-delay: 1.3s !important;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes finalHeartRiseNew {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.7)
+            rotate(-8deg);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            scale(1.15)
+            rotate(15deg);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes finalGlitterNew {
+
+    0%,
+    100% {
+        opacity: 0.25;
+        transform: scale(0.65) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.35) rotate(20deg);
+    }
+}
+
+
+@keyframes finalCakeFloatNew {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+@keyframes finalDecorationPulseNew {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+
+/* =========================================================
+   MOBILE — 390px
+========================================================= */
+
+@media (max-width: 430px) {
+
+    #final-screen .final-photo {
+
+        width: 68px !important;
+        height: 88px !important;
+
+    }
+
+    #final-screen .final-photo-1 {
+        top: 6% !important;
+        left: 7% !important;
+    }
+
+    #final-screen .final-photo-2 {
+        top: 6% !important;
+        right: 7% !important;
+    }
+
+    #final-screen .final-photo-3 {
+        top: 28% !important;
+        left: 3% !important;
+    }
+
+    #final-screen .final-photo-4 {
+        top: 28% !important;
+        right: 3% !important;
+    }
+
+    #final-screen .final-photo-5 {
+        bottom: 28% !important;
+        left: 3% !important;
+    }
+
+    #final-screen .final-photo-6 {
+        bottom: 28% !important;
+        right: 3% !important;
+    }
+
+    #final-screen .final-photo-7 {
+        bottom: 6% !important;
+        left: 7% !important;
+    }
+
+    #final-screen .final-photo-8 {
+        bottom: 6% !important;
+        right: 7% !important;
+    }
+
+    #final-screen .final-center {
+
+        width: 220px !important;
+
+    }
+
+    #final-screen .final-cake {
+
+        font-size: 46px !important;
+
+    }
+
+    #final-screen .final-title {
+
+        font-size: 36px !important;
+
+    }
+
+    #final-screen .final-decorations {
+
+        font-size: 19px !important;
+
+        letter-spacing: 6px !important;
+
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL — 320px
+========================================================= */
+
+@media (max-width: 330px) {
+
+    #final-screen .final-photo {
+
+        width: 60px !important;
+        height: 78px !important;
+
+    }
+
+    #final-screen .final-center {
+
+        width: 205px !important;
+
+    }
+
+    #final-screen .final-title {
+
+        font-size: 32px !important;
+
+    }
+
+}
+
+/* =========================================================
+   FINAL BIRTHDAY PAGE — CLEAN FINAL OVERRIDES
+   This is the ONLY final-effects block after the original
+   project CSS. It intentionally replaces the old conflicting
+   heart/glitter rules without touching the other screens.
+========================================================= */
+
+/* Final screen must be a fixed full-screen canvas. */
+#final-screen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 44%,
+            rgba(255,255,255,0.30) 0%,
+            rgba(255,255,255,0.08) 28%,
+            transparent 55%
+        ),
+        linear-gradient(
+            160deg,
+            #ffc8dc 0%,
+            #f4a9d1 48%,
+            #cfa0e8 100%
+        ) !important;
+    z-index: 50000 !important;
+}
+
+#final-screen.active {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+/* IMPORTANT: do NOT use #final-screen > * { position:relative } here.
+   That old rule was fighting the absolute collage and center layout. */
+#final-screen > * {
+    box-sizing: border-box;
+}
+
+#final-screen .final-page {
+    position: relative !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* =========================================================
+   8-PHOTO COLLAGE
+========================================================= */
+
+#final-screen .final-photo-collage {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+    z-index: 20 !important;
+}
+
+#final-screen .final-photo {
+    position: absolute !important;
+    width: 68px !important;
+    height: 88px !important;
+    padding: 5px !important;
+    margin: 0 !important;
+    background: rgba(255,255,255,0.98) !important;
+    border: 2px solid rgba(30,20,30,0.90) !important;
+    border-radius: 3px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-shadow: 0 8px 20px rgba(70,30,70,0.25) !important;
+    z-index: 30 !important;
+}
+
+#final-screen .final-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+    object-fit: cover !important;
+    border-radius: 1px !important;
+    margin: 0 !important;
+}
+
+/* Deliberately irregular vertical positions so the collage does not
+   look like two perfectly aligned columns. */
+#final-screen .final-photo-1 {
+    top: 6% !important;
+    left: 7% !important;
+    transform: rotate(-7deg) !important;
+}
+
+#final-screen .final-photo-2 {
+    top: 7% !important;
+    right: 7% !important;
+    transform: rotate(7deg) !important;
+}
+
+#final-screen .final-photo-3 {
+    top: 27% !important;
+    left: 3% !important;
+    transform: rotate(-5deg) !important;
+}
+
+#final-screen .final-photo-4 {
+    top: 29% !important;
+    right: 3% !important;
+    transform: rotate(5deg) !important;
+}
+
+#final-screen .final-photo-5 {
+    bottom: 28% !important;
+    left: 4% !important;
+    transform: rotate(5deg) !important;
+}
+
+#final-screen .final-photo-6 {
+    bottom: 27% !important;
+    right: 3% !important;
+    transform: rotate(-5deg) !important;
+}
+
+#final-screen .final-photo-7 {
+    bottom: 7% !important;
+    left: 7% !important;
+    transform: rotate(-6deg) !important;
+}
+
+#final-screen .final-photo-8 {
+    bottom: 7% !important;
+    right: 7% !important;
+    transform: rotate(6deg) !important;
+}
+
+/* =========================================================
+   CENTER BIRTHDAY MESSAGE
+========================================================= */
+
+#final-screen .final-center {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 220px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    z-index: 100 !important;
+    pointer-events: none !important;
+}
+
+#final-screen .final-cake {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    font-size: 46px !important;
+    line-height: 1 !important;
+    display: block !important;
+    animation: finalCakeFloatClean 3s ease-in-out infinite !important;
+}
+
+#final-screen .final-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 36px !important;
+    line-height: 1.05 !important;
+    font-weight: 900 !important;
+    letter-spacing: -1px !important;
+    text-align: center !important;
+    text-shadow: 0 4px 12px rgba(120,40,100,0.30) !important;
+}
+
+#final-screen .final-decorations {
+    margin-top: 14px !important;
+    padding: 0 !important;
+    font-size: 19px !important;
+    line-height: 1 !important;
+    letter-spacing: 6px !important;
+    white-space: nowrap !important;
+    animation: finalDecorationPulseClean 2.2s ease-in-out infinite !important;
+}
+
+/* Optional heartfelt message/button classes are supported if present
+   in the HTML. They remain centered and do not disturb the collage. */
+#final-screen .final-message {
+    width: min(310px, 88vw);
+    margin: 14px auto 0;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(120,40,100,0.22);
+}
+
+#final-screen .final-home-btn {
+    pointer-events: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    margin-top: 18px;
+    min-height: 48px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.94);
+    color: #e84c9b;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(120,40,100,0.20);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#final-screen .final-home-btn:active {
+    transform: scale(.96);
+}
+
+/* =========================================================
+   FLOATING HEARTS — IRREGULAR / NATURAL
+   Supports BOTH possible HTML naming systems used during the
+   earlier iterations: .final-floating-hearts/.fh-* and
+   .final-hearts/.floating-heart/.heart-*.
+========================================================= */
+
+#final-screen .final-floating-hearts,
+#final-screen .final-hearts {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: 8 !important;
+}
+
+#final-screen .final-floating-hearts span,
+#final-screen .final-hearts .floating-heart {
+    position: absolute !important;
+    bottom: -45px !important;
+    left: var(--heart-left, 50%) !important;
+    display: block !important;
+    margin: 0 !important;
+    font-size: var(--heart-size, 18px) !important;
+    line-height: 1 !important;
+    opacity: 0 !important;
+    will-change: transform, opacity;
+    animation: finalNaturalHeart var(--heart-duration, 10s) linear infinite !important;
+    animation-delay: var(--heart-delay, 0s) !important;
+}
+
+/* Non-uniform starting points: intentionally NOT evenly spaced. */
+#final-screen .fh-1, #final-screen .heart-1 { --heart-left: 6%;  --heart-size: 15px; --heart-duration: 9s;  --heart-delay: -2s; }
+#final-screen .fh-2, #final-screen .heart-2 { --heart-left: 19%; --heart-size: 21px; --heart-duration: 13s; --heart-delay: -8s; }
+#final-screen .fh-3, #final-screen .heart-3 { --heart-left: 34%; --heart-size: 16px; --heart-duration: 10s; --heart-delay: -4s; }
+#final-screen .fh-4, #final-screen .heart-4 { --heart-left: 48%; --heart-size: 20px; --heart-duration: 15s; --heart-delay: -11s; }
+#final-screen .fh-5, #final-screen .heart-5 { --heart-left: 63%; --heart-size: 17px; --heart-duration: 11s; --heart-delay: -5s; }
+#final-screen .fh-6, #final-screen .heart-6 { --heart-left: 78%; --heart-size: 22px; --heart-duration: 14s; --heart-delay: -9s; }
+#final-screen .fh-7, #final-screen .heart-7 { --heart-left: 92%; --heart-size: 15px; --heart-duration: 10s; --heart-delay: -6s; }
+#final-screen .fh-8, #final-screen .heart-8 { --heart-left: 12%; --heart-size: 18px; --heart-duration: 16s; --heart-delay: -13s; }
+#final-screen .fh-9, #final-screen .heart-9 { --heart-left: 42%; --heart-size: 14px; --heart-duration: 12s; --heart-delay: -7s; }
+#final-screen .fh-10, #final-screen .heart-10 { --heart-left: 72%; --heart-size: 19px; --heart-duration: 9s; --heart-delay: -3s; }
+#final-screen .fh-11, #final-screen .heart-11 { --heart-left: 87%; --heart-size: 16px; --heart-duration: 17s; --heart-delay: -15s; }
+#final-screen .fh-12, #final-screen .heart-12 { --heart-left: 55%; --heart-size: 20px; --heart-duration: 13s; --heart-delay: -10s; }
+
+@keyframes finalNaturalHeart {
+    0% {
+        transform: translate3d(0, 12vh, 0) rotate(-10deg) scale(.72);
+        opacity: 0;
+    }
+    10% {
+        opacity: .72;
+    }
+    25% {
+        transform: translate3d(18px, -8vh, 0) rotate(7deg) scale(.95);
+        opacity: .78;
+    }
+    43% {
+        transform: translate3d(-24px, -30vh, 0) rotate(-9deg) scale(1.04);
+        opacity: .68;
+    }
+    61% {
+        transform: translate3d(30px, -53vh, 0) rotate(10deg) scale(.92);
+        opacity: .62;
+    }
+    78% {
+        transform: translate3d(-17px, -76vh, 0) rotate(-6deg) scale(1.08);
+        opacity: .48;
+    }
+    100% {
+        transform: translate3d(22px, -118vh, 0) rotate(12deg) scale(.82);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   FLOATING GLITTERS — SCATTERED, NOT A GRID
+========================================================= */
+
+#final-screen .final-floating-glitters,
+#final-screen .final-glitters {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: 7 !important;
+}
+
+#final-screen .final-floating-glitters span,
+#final-screen .final-glitters .floating-glitter {
+    position: absolute !important;
+    display: block !important;
+    color: rgba(255,255,255,.92) !important;
+    font-size: var(--glitter-size, 13px) !important;
+    opacity: .25 !important;
+    will-change: transform, opacity;
+    animation: finalNaturalGlitter var(--glitter-duration, 4s) ease-in-out infinite !important;
+    animation-delay: var(--glitter-delay, 0s) !important;
+}
+
+/* Scatter around the canvas with deliberately uneven spacing. */
+#final-screen .glitter-1  { left: 11%; top: 16%; --glitter-duration: 4.2s; --glitter-delay: -1s; }
+#final-screen .glitter-2  { left: 29%; top: 25%; --glitter-duration: 5.3s; --glitter-delay: -3s; }
+#final-screen .glitter-3  { left: 53%; top: 12%; --glitter-duration: 4.6s; --glitter-delay: -2s; }
+#final-screen .glitter-4  { left: 79%; top: 21%; --glitter-duration: 5.8s; --glitter-delay: -4s; }
+#final-screen .glitter-5  { left: 7%;  top: 43%; --glitter-duration: 4.1s; --glitter-delay: -2.5s; }
+#final-screen .glitter-6  { left: 24%; top: 58%; --glitter-duration: 5.5s; --glitter-delay: -1.5s; }
+#final-screen .glitter-7  { left: 69%; top: 48%; --glitter-duration: 4.7s; --glitter-delay: -3.5s; }
+#final-screen .glitter-8  { left: 91%; top: 63%; --glitter-duration: 6s;   --glitter-delay: -4.5s; }
+#final-screen .glitter-9  { left: 13%; top: 78%; --glitter-duration: 4.4s; --glitter-delay: -2.2s; }
+#final-screen .glitter-10 { left: 47%; top: 86%; --glitter-duration: 5.7s; --glitter-delay: -3.8s; }
+#final-screen .glitter-11 { left: 82%; top: 79%; --glitter-duration: 4.9s; --glitter-delay: -1.8s; }
+#final-screen .glitter-12 { left: 58%; top: 34%; --glitter-duration: 6.2s; --glitter-delay: -4.1s; }
+
+@keyframes finalNaturalGlitter {
+    0%, 100% {
+        transform: translate3d(-3px, 5px, 0) scale(.65) rotate(-8deg);
+        opacity: .18;
+    }
+    50% {
+        transform: translate3d(5px, -7px, 0) scale(1.18) rotate(18deg);
+        opacity: .9;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 360px) {
+    #final-screen .final-photo {
+        width: 62px !important;
+        height: 80px !important;
+    }
+
+    #final-screen .final-center {
+        width: 205px !important;
+    }
+
+    #final-screen .final-cake {
+        font-size: 43px !important;
+    }
+
+    #final-screen .final-title {
+        font-size: 33px !important;
+    }
+
+    #final-screen .final-decorations {
+        font-size: 18px !important;
+        letter-spacing: 5px !important;
+    }
+}
+
+@keyframes finalCakeFloatClean {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes finalDecorationPulseClean {
+    0%, 100% { opacity: .65; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+/* =========================================================
+   FINAL FIX — VISIBLE FLOATING HEARTS + GLITTERS
+   Paste this at the VERY END of style.css
+========================================================= */
+
+/* ---------- HEART CONTAINER ---------- */
+
+#final-screen .final-hearts,
+#final-screen .final-floating-hearts {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    display: block !important;
+
+    z-index: 200 !important;
+}
+
+
+/* ---------- HEARTS ---------- */
+
+#final-screen .final-hearts .floating-heart,
+#final-screen .final-floating-hearts span {
+
+    position: absolute !important;
+
+    display: block !important;
+
+    bottom: -40px !important;
+
+    left: var(--heart-left) !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: var(--heart-size) !important;
+
+    line-height: 1 !important;
+
+    opacity: 0 !important;
+
+    visibility: visible !important;
+
+    will-change: transform, opacity;
+
+    animation-name: finalVisibleHeart !important;
+
+    animation-duration: var(--heart-duration) !important;
+
+    animation-delay: var(--heart-delay) !important;
+
+    animation-timing-function: linear !important;
+
+    animation-iteration-count: infinite !important;
+
+    animation-fill-mode: both !important;
+}
+
+
+/* ---------- IRREGULAR HEART POSITIONS ---------- */
+
+#final-screen .heart-1 {
+    --heart-left: 7%;
+    --heart-size: 17px;
+    --heart-duration: 11s;
+    --heart-delay: -7s;
+}
+
+#final-screen .heart-2 {
+    --heart-left: 24%;
+    --heart-size: 22px;
+    --heart-duration: 14s;
+    --heart-delay: -3s;
+}
+
+#final-screen .heart-3 {
+    --heart-left: 41%;
+    --heart-size: 15px;
+    --heart-duration: 10s;
+    --heart-delay: -8s;
+}
+
+#final-screen .heart-4 {
+    --heart-left: 63%;
+    --heart-size: 20px;
+    --heart-duration: 15s;
+    --heart-delay: -11s;
+}
+
+#final-screen .heart-5 {
+    --heart-left: 82%;
+    --heart-size: 16px;
+    --heart-duration: 12s;
+    --heart-delay: -5s;
+}
+
+#final-screen .heart-6 {
+    --heart-left: 15%;
+    --heart-size: 19px;
+    --heart-duration: 16s;
+    --heart-delay: -13s;
+}
+
+#final-screen .heart-7 {
+    --heart-left: 34%;
+    --heart-size: 14px;
+    --heart-duration: 13s;
+    --heart-delay: -2s;
+}
+
+#final-screen .heart-8 {
+    --heart-left: 56%;
+    --heart-size: 21px;
+    --heart-duration: 17s;
+    --heart-delay: -9s;
+}
+
+#final-screen .heart-9 {
+    --heart-left: 73%;
+    --heart-size: 15px;
+    --heart-duration: 11s;
+    --heart-delay: -6s;
+}
+
+#final-screen .heart-10 {
+    --heart-left: 92%;
+    --heart-size: 19px;
+    --heart-duration: 14s;
+    --heart-delay: -12s;
+}
+
+#final-screen .heart-11 {
+    --heart-left: 29%;
+    --heart-size: 16px;
+    --heart-duration: 18s;
+    --heart-delay: -15s;
+}
+
+#final-screen .heart-12 {
+    --heart-left: 69%;
+    --heart-size: 18px;
+    --heart-duration: 13s;
+    --heart-delay: -4s;
+}
+
+
+/* =========================================================
+   HEART MOVEMENT
+   Rises + moves left/right so it doesn't look organized
+========================================================= */
+
+@keyframes finalVisibleHeart {
+
+    0% {
+
+        transform:
+            translate3d(0, 15vh, 0)
+            rotate(-10deg)
+            scale(0.65);
+
+        opacity: 0;
+    }
+
+    8% {
+
+        opacity: 0.85;
+    }
+
+    25% {
+
+        transform:
+            translate3d(25px, -15vh, 0)
+            rotate(8deg)
+            scale(1);
+        
+        opacity: 0.8;
+    }
+
+    45% {
+
+        transform:
+            translate3d(-30px, -40vh, 0)
+            rotate(-7deg)
+            scale(0.92);
+
+        opacity: 0.75;
+    }
+
+    65% {
+
+        transform:
+            translate3d(22px, -65vh, 0)
+            rotate(10deg)
+            scale(1.08);
+
+        opacity: 0.65;
+    }
+
+    82% {
+
+        transform:
+            translate3d(-20px, -88vh, 0)
+            rotate(-8deg)
+            scale(0.9);
+
+        opacity: 0.45;
+    }
+
+    100% {
+
+        transform:
+            translate3d(30px, -125vh, 0)
+            rotate(12deg)
+            scale(0.75);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   GLITTER CONTAINER
+========================================================= */
+
+#final-screen .final-glitters,
+#final-screen .final-floating-glitters {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    display: block !important;
+
+    z-index: 180 !important;
+}
+
+
+/* ---------- GLITTERS ---------- */
+
+#final-screen .final-glitters .floating-glitter,
+#final-screen .final-floating-glitters span {
+
+    position: absolute !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: var(--glitter-size, 15px) !important;
+
+    line-height: 1 !important;
+
+    opacity: 0.8 !important;
+
+    visibility: visible !important;
+
+    will-change: transform, opacity;
+
+    animation:
+        finalVisibleGlitter
+        var(--glitter-duration, 4s)
+        ease-in-out
+        var(--glitter-delay, 0s)
+        infinite !important;
+}
+
+
+/* ---------- SCATTERED GLITTER POSITIONS ---------- */
+
+#final-screen .glitter-1 {
+    left: 9%;
+    top: 18%;
+    --glitter-duration: 4s;
+    --glitter-delay: -1s;
+}
+
+#final-screen .glitter-2 {
+    left: 27%;
+    top: 31%;
+    --glitter-duration: 5s;
+    --glitter-delay: -3s;
+}
+
+#final-screen .glitter-3 {
+    left: 51%;
+    top: 12%;
+    --glitter-duration: 4.5s;
+    --glitter-delay: -2s;
+}
+
+#final-screen .glitter-4 {
+    left: 76%;
+    top: 24%;
+    --glitter-duration: 5.5s;
+    --glitter-delay: -4s;
+}
+
+#final-screen .glitter-5 {
+    left: 6%;
+    top: 47%;
+    --glitter-duration: 4.2s;
+    --glitter-delay: -2.5s;
+}
+
+#final-screen .glitter-6 {
+    left: 21%;
+    top: 63%;
+    --glitter-duration: 5.2s;
+    --glitter-delay: -1.5s;
+}
+
+#final-screen .glitter-7 {
+    left: 68%;
+    top: 51%;
+    --glitter-duration: 4.7s;
+    --glitter-delay: -3.5s;
+}
+
+#final-screen .glitter-8 {
+    left: 91%;
+    top: 68%;
+    --glitter-duration: 5.8s;
+    --glitter-delay: -4.5s;
+}
+
+
+/* ---------- GLITTER ANIMATION ---------- */
+
+@keyframes finalVisibleGlitter {
+
+    0% {
+
+        transform:
+            translate3d(-4px, 6px, 0)
+            scale(0.55)
+            rotate(-10deg);
+
+        opacity: 0.15;
+    }
+
+    50% {
+
+        transform:
+            translate3d(6px, -8px, 0)
+            scale(1.35)
+            rotate(20deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translate3d(-3px, 5px, 0)
+            scale(0.7)
+            rotate(-12deg);
+
+        opacity: 0.2;
+    }
+}
+
+
+/* =========================================================
+   KEEP PHOTOS ABOVE EFFECTS
+========================================================= */
+
+#final-screen .final-photo-collage {
+
+    z-index: 220 !important;
+}
+
+
+/* Keep center birthday message above everything */
+
+#final-screen .final-center {
+
+    z-index: 300 !important;
+}
+/* =========================================================
+   FINAL MESSAGE — PREMIUM MOBILE LAYOUT
+========================================================= */
+
+#final-screen .final-center {
+
+    position: absolute !important;
+
+    top: 50% !important;
+    left: 50% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    width: min(78vw, 320px) !important;
+
+    max-height: 82dvh !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    overflow: hidden !important;
+
+    z-index: 300 !important;
+}
+
+
+/* Cake */
+
+#final-screen .final-cake {
+
+    font-size: 42px !important;
+
+    line-height: 1 !important;
+
+    margin-bottom: 7px !important;
+
+    filter:
+        drop-shadow(
+            0 4px 8px rgba(120, 50, 100, 0.18)
+        );
+
+}
+
+
+/* Small heading */
+
+#final-screen .final-small-title {
+
+    margin: 0 0 5px !important;
+
+    color: rgba(255,255,255,0.9) !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.8px !important;
+
+    text-transform: uppercase !important;
+
+}
+
+
+/* Main title */
+
+#final-screen .final-title {
+
+    margin: 0 0 12px !important;
+
+    color: #ffffff !important;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif !important;
+
+    font-size: clamp(29px, 8vw, 38px) !important;
+
+    font-weight: 900 !important;
+
+    line-height: 1 !important;
+
+    letter-spacing: -0.5px !important;
+
+    text-shadow:
+        0 4px 14px rgba(120, 45, 100, 0.28) !important;
+}
+
+
+/* Message area */
+
+#final-screen .final-message {
+
+    width: 100% !important;
+
+    padding: 0 3px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Individual thoughts */
+
+#final-screen .final-message p {
+
+    margin: 0 0 9px !important;
+
+    color: rgba(255,255,255,0.96) !important;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif !important;
+
+    font-size: 11.5px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1.42 !important;
+
+    letter-spacing: 0.05px !important;
+
+    text-align: center !important;
+
+    text-shadow:
+        0 2px 7px rgba(100, 40, 90, 0.18) !important;
+}
+
+
+/* First name */
+
+#final-screen .final-message p:first-child strong {
+
+    font-size: 13px !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* Final emotional line */
+
+#final-screen .final-message .final-last-line {
+
+    margin-top: 3px !important;
+
+    margin-bottom: 5px !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.45 !important;
+
+}
+
+
+/* Final birthday sentence */
+
+#final-screen .final-message .final-last-line strong {
+
+    display: inline-block !important;
+
+    margin-top: 4px !important;
+
+    font-size: 14px !important;
+
+    font-weight: 800 !important;
+
+    color: #ffffff !important;
+
+}
+
+
+/* Decorations */
+
+#final-screen .final-decorations {
+
+    margin-top: 4px !important;
+
+    font-size: 16px !important;
+
+    letter-spacing: 7px !important;
+
+    line-height: 1 !important;
+
+}
+
+
+/* Home button */
+
+#final-screen .final-home-btn {
+
+    margin-top: 10px !important;
+
+    min-width: 125px !important;
+
+    height: 38px !important;
+
+    padding: 0 20px !important;
+
+    border: 1px solid rgba(255,255,255,0.5) !important;
+
+    border-radius: 999px !important;
+
+    background: rgba(255,255,255,0.18) !important;
+
+    color: #ffffff !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 0.4px !important;
+
+    backdrop-filter: blur(8px) !important;
+
+    -webkit-backdrop-filter: blur(8px) !important;
+
+    box-shadow:
+        0 6px 18px rgba(90, 30, 80, 0.15) !important;
+
+    cursor: pointer !important;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease !important;
+}
+
+
+#final-screen .final-home-btn:active {
+
+    transform: scale(0.95) !important;
+
+    background: rgba(255,255,255,0.28) !important;
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 360px) {
+
+    #final-screen .final-center {
+
+        width: 76vw !important;
+
+        max-height: 84dvh !important;
+    }
+
+
+    #final-screen .final-cake {
+
+        font-size: 36px !important;
+
+        margin-bottom: 5px !important;
+    }
+
+
+    #final-screen .final-small-title {
+
+        font-size: 8px !important;
+
+        letter-spacing: 1.4px !important;
+    }
+
+
+    #final-screen .final-title {
+
+        font-size: 27px !important;
+
+        margin-bottom: 9px !important;
+    }
+
+
+    #final-screen .final-message p {
+
+        font-size: 10.5px !important;
+
+        line-height: 1.36 !important;
+
+        margin-bottom: 7px !important;
+    }
+
+
+    #final-screen .final-message .final-last-line {
+
+        font-size: 11px !important;
+    }
+
+
+    #final-screen .final-message .final-last-line strong {
+
+        font-size: 12.5px !important;
+    }
+
+
+    #final-screen .final-decorations {
+
+        font-size: 14px !important;
+
+        letter-spacing: 5px !important;
+    }
+
+
+    #final-screen .final-home-btn {
+
+        height: 35px !important;
+
+        min-width: 115px !important;
+
+        margin-top: 7px !important;
+
+        font-size: 12px !important;
+    }
+}/* =========================================
+   FINAL PAGE — PERSONAL HANDWRITTEN STYLE
+========================================= */
+
+.final-screen .final-small-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.final-screen .final-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+}
+
+.final-screen .final-message {
+    font-family: "Caveat", cursive;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: 0.2px;
+}
+
+.final-screen .final-message p {
+    margin-bottom: 18px;
+}
+
+.final-screen .final-last-line {
+    font-weight: 600;
+}
+
+.final-screen .final-last-line strong {
+    font-family: "Caveat", cursive;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* Mobile adjustment */
+@media (max-width: 480px) {
+
+    .final-screen .final-small-title {
+        font-size: 14px;
+    }
+
+    .final-screen .final-title {
+        font-size: 36px;
+    }
+
+    .final-screen .final-message {
+        font-size: 20px;
+        line-height: 1.45;
+    }
+
+    .final-screen .final-last-line strong {
+        font-size: 24px;
+    }
+
+}
+
+/* =========================================================
+   THANOS + INFINITY GAUNTLET
+   Replaces the final-page Home button. Added as its own
+   section so it's easy to find/remove without touching any
+   of the existing final-page rules above.
+========================================================= */
+
+/* Hide the original Home button; Thanos takes its place
+   visually. Left in the DOM untouched (existing click
+   handler still works if it's ever re-shown). */
+#final-screen .final-home-btn {
+    display: none !important;
+}
+
+#final-screen .thanos-dock {
+    position: absolute !important;
+
+    left: 50% !important;
+    bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+
+    height: clamp(120px, 34vw, 155px) !important;
+    width: auto !important;
+
+    transform: translateX(-50%) !important;
+
+    pointer-events: none !important;
+
+    z-index: 400 !important;
+}
+
+#final-screen .thanos-figure {
+    display: block !important;
+
+    height: 100% !important;
+    width: auto !important;
+
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+
+    filter: drop-shadow(0 8px 10px rgba(60, 20, 60, 0.35)) !important;
+}
+
+/* Invisible tap target over the gauntlet fist, slightly
+   larger than the visible gauntlet for easy mobile tapping. */
+#final-screen .thanos-gauntlet-hitbox {
+    position: absolute !important;
+
+    top: 12% !important;
+    left: 55% !important;
+    width: 44% !important;
+    height: 30% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: transparent !important;
+
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: transparent !important;
+
+    transition: box-shadow 0.25s ease, background 0.25s ease !important;
+}
+
+#final-screen .thanos-gauntlet-hitbox:active {
+    background: radial-gradient(circle, rgba(255, 205, 120, 0.30) 0%, rgba(255, 205, 120, 0) 70%) !important;
+    box-shadow: 0 0 16px 6px rgba(255, 200, 90, 0.35) !important;
+}
+
+@media (hover: hover) {
+    #final-screen .thanos-gauntlet-hitbox:hover {
+        background: radial-gradient(circle, rgba(255, 205, 120, 0.22) 0%, rgba(255, 205, 120, 0) 70%) !important;
+        box-shadow: 0 0 14px 5px rgba(255, 200, 90, 0.25) !important;
+    }
+}
+
+/* Snap flash — quick purple/pink glow over the gauntlet */
+#final-screen .thanos-flash {
+    position: absolute !important;
+
+    top: 9% !important;
+    left: 51% !important;
+    width: 48% !important;
+    height: 34% !important;
+
+    border-radius: 50% !important;
+
+    background: radial-gradient(circle, rgba(220, 150, 255, 0.85) 0%, rgba(255, 140, 210, 0.55) 45%, rgba(255, 140, 210, 0) 75%) !important;
+
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#final-screen .thanos-dock.is-flashing .thanos-flash {
+    animation: thanosSnapFlash 0.22s ease-out !important;
+}
+
+@keyframes thanosSnapFlash {
+    0%   { opacity: 0; transform: scale(0.7); }
+    45%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* Soft dust particles drifting away from the gauntlet */
+#final-screen .thanos-particles {
+    position: absolute !important;
+
+    top: 24% !important;
+    left: 77% !important;
+    width: 0 !important;
+    height: 0 !important;
+
+    pointer-events: none !important;
+}
+
+#final-screen .thanos-particle {
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+
+    background: radial-gradient(circle, rgba(255, 228, 190, 0.95) 0%, rgba(215, 145, 225, 0.6) 60%, rgba(215, 145, 225, 0) 100%) !important;
+
+    opacity: 0 !important;
+}
+
+#final-screen .thanos-dock.is-snapping .thanos-particle {
+    animation: thanosParticleDrift 1s ease-out forwards !important;
+}
+
+#final-screen .thanos-particle:nth-child(1)  { --tx: 14px;  --ty: -34px; animation-delay: 0s !important; }
+#final-screen .thanos-particle:nth-child(2)  { --tx: -18px; --ty: -26px; animation-delay: .03s !important; }
+#final-screen .thanos-particle:nth-child(3)  { --tx: 26px;  --ty: -14px; animation-delay: .06s !important; }
+#final-screen .thanos-particle:nth-child(4)  { --tx: -10px; --ty: -38px; animation-delay: .02s !important; }
+#final-screen .thanos-particle:nth-child(5)  { --tx: 20px;  --ty: 20px;  animation-delay: .08s !important; }
+#final-screen .thanos-particle:nth-child(6)  { --tx: -24px; --ty: 12px;  animation-delay: .05s !important; }
+#final-screen .thanos-particle:nth-child(7)  { --tx: 8px;   --ty: -44px; animation-delay: .10s !important; }
+#final-screen .thanos-particle:nth-child(8)  { --tx: -14px; --ty: -18px; animation-delay: .01s !important; }
+#final-screen .thanos-particle:nth-child(9)  { --tx: 30px;  --ty: -4px;  animation-delay: .07s !important; }
+#final-screen .thanos-particle:nth-child(10) { --tx: -28px; --ty: -8px;  animation-delay: .04s !important; }
+#final-screen .thanos-particle:nth-child(11) { --tx: 12px;  --ty: 26px;  animation-delay: .09s !important; }
+#final-screen .thanos-particle:nth-child(12) { --tx: -6px;  --ty: -30px; animation-delay: .06s !important; }
+
+@keyframes thanosParticleDrift {
+    0%   { opacity: 0; transform: translate(0, 0) scale(0.6); }
+    15%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2); }
+}
+
+/* Whole final page fading/disintegrating after the snap —
+   fading #final-screen itself fades every descendant
+   (photos, message, hearts, glitters, Thanos, background)
+   together in one smooth pass. */
+#final-screen.thanos-snap-out {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(0.97);
+
+    transition:
+        opacity 8s ease-in-out,
+        filter 8s ease-in-out,
+        transform 8s ease-in-out;
+}
+@media (max-width: 360px) {
+    #final-screen .thanos-dock {
+        bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+    }
+}
+/* =========================================
+   🫰 GAUNTLET — TAP TO SNAP HINT
+========================================= */
+
+#final-screen .gauntlet-hint {
+    position: absolute !important;
+
+    /* RIGHT side of Thanos's gauntlet */
+    left: 92% !important;
+    top: 8% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    gap: 3px !important;
+
+    width: max-content !important;
+
+    pointer-events: none !important;
+    z-index: 500 !important;
+
+    animation: gauntletHintFloat 1.8s ease-in-out infinite !important;
+}
+
+/* -----------------------------------------
+   MOVING ARROW
+----------------------------------------- */
+
+.gauntlet-arrow {
+    display: block;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    line-height: 0.8;
+
+    /* Point LEFT toward the gauntlet */
+    transform: rotate(0deg);
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 5px #ff4fa3,
+        0 0 10px #ff4fa3,
+        0 0 18px #c44cff,
+        0 0 28px rgba(196, 76, 255, 0.8);
+
+    /* Arrow movement */
+    animation: arrowPoint 1.1s ease-in-out infinite;
+}
+
+
+/* -----------------------------------------
+   TAP TO SNAP TEXT
+----------------------------------------- */
+
+.gauntlet-hint-text {
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 5px #ff4fa3,
+        0 0 10px #ff4fa3,
+        0 0 18px #c44cff,
+        0 0 25px rgba(255, 79, 163, 0.8);
+
+    animation: textGlow 1.8s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ARROW MOVES TOWARD THE GAUNTLET
+========================================= */
+
+@keyframes arrowPoint {
+
+    0%,
+    100% {
+        transform: translateX(2px);
+    }
+
+    50% {
+        transform: translateX(-8px);
+    }
+
+}
+
+
+/* =========================================
+   TEXT GLOW
+========================================= */
+
+@keyframes textGlow {
+
+    0%,
+    100% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================
+   WHOLE HINT FLOAT
+========================================= */
+
+@keyframes hintFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .gauntlet-hint {
+        right: -5px;
+        bottom: 80px;
+    }
+
+    .gauntlet-arrow {
+        font-size: 38px;
+    }
+
+    .gauntlet-hint-text {
+        font-size: 10px;
+        letter-spacing: 0.8px;
+    }
+
+}

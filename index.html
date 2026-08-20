@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- your existing CSS / other links -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+</head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="A special birthday surprise"
+    >
+
+    <title>Something Special 🦇</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<main id="app">
+
+
+    <!-- =========================================
+         START SCREEN
+    ========================================== -->
+
+    <section
+        id="start-screen"
+        class="screen active"
+    >
+
+        <div class="start-content">
+
+            <div class="bat-symbol">
+                🦇
+            </div>
+
+            <p class="classified">
+                CLASSIFIED
+            </p>
+
+            <h1>
+                A Secret Mission
+            </h1>
+
+            <p class="start-text">
+                Someone has prepared something special for you...
+            </p>
+
+            <button
+                id="start-btn"
+                class="primary-btn"
+                type="button"
+            >
+                TAP TO BEGIN
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         BATMAN VIDEO
+    ========================================== -->
+
+    <section
+        id="batman-screen"
+        class="screen"
+    >
+
+        <video
+            id="batman-video"
+            class="batman-video"
+            playsinline
+            preload="auto"
+        >
+
+            <source
+                src="assets/video/batman.mp4"
+                type="video/mp4"
+            >
+
+        </video>
+
+    </section>
+
+
+
+    <!-- =========================================
+         BATMAN MESSAGE
+    ========================================== -->
+
+    <section
+        id="message-screen"
+        class="screen"
+    >
+
+        <div class="message-content">
+
+            <div class="message-bat">
+                🦇
+            </div>
+
+            <p class="message-label">
+                MISSION COMPLETE
+            </p>
+
+            <h2>
+                You found the secret.
+            </h2>
+
+            <p class="message-text">
+                But this is only the beginning...
+            </p>
+
+            <button
+                id="continue-btn"
+                class="primary-btn"
+                type="button"
+            >
+                CONTINUE THE MISSION
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SECRET VAULT
+    ========================================== -->
+
+    <section
+        id="vault-screen"
+        class="screen"
+    >
+
+        <div class="vault-content">
+
+            <div class="vault-icon">
+                🔐
+            </div>
+
+            <p class="vault-label">
+                CLASSIFIED MISSION
+            </p>
+
+            <h2>
+                Secret Vault
+            </h2>
+
+            <p class="vault-text">
+                Enter the DATE OF BIRTH to continue😅.
+            </p>
+
+            <input
+                id="password-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="8"
+                placeholder="DDMMYYYY"
+                autocomplete="off"
+            >
+
+            <button
+                id="unlock-btn"
+                class="primary-btn"
+                type="button"
+            >
+                🔓 UNLOCK
+            </button>
+
+            <p
+                id="vault-message"
+                class="vault-message"
+            ></p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         COCKROACH GAME
+    ========================================== -->
+
+    <section
+        id="game-screen"
+        class="screen"
+    >
+
+        <div class="game-content">
+
+            <p class="game-label">
+                🚨 FINAL SECURITY LAYER
+            </p>
+
+            <h2>
+                Smash the Cockroaches!
+            </h2>
+
+            <p class="game-instruction">
+                🪳 Smash the cockroaches to unlock the surprise!
+            </p>
+
+            <div class="game-score">
+
+                SCORE:
+                <span id="game-score">0</span>
+                / 10
+
+            </div>
+
+
+            <!-- GAME AREA -->
+
+            <div id="game-area">
+
+
+                <!-- NORMAL COCKROACH 1 -->
+
+                <button
+                    class="cockroach normal-cockroach"
+                    type="button"
+                    aria-label="Cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/normal.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+                <!-- NORMAL COCKROACH 2 -->
+
+                <button
+                    class="cockroach normal-cockroach"
+                    type="button"
+                    aria-label="Cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/normal.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+                <!-- RADIOACTIVE COCKROACH -->
+
+                <button
+                    class="cockroach radioactive-cockroach"
+                    type="button"
+                    aria-label="Radioactive cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/radioactive.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+                <!-- NORMAL COCKROACH 3 -->
+
+                <button
+                    class="cockroach normal-cockroach"
+                    type="button"
+                    aria-label="Cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/normal.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+                <!-- NORMAL COCKROACH 4 -->
+
+                <button
+                    class="cockroach normal-cockroach"
+                    type="button"
+                    aria-label="Cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/normal.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+                <!-- NORMAL COCKROACH 5 -->
+
+                <button
+                    class="cockroach normal-cockroach"
+                    type="button"
+                    aria-label="Cockroach"
+                >
+
+                    <img
+                        src="assets/images/cockroach/normal.png"
+                        alt=""
+                    >
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SURPRISE UNLOCKED
+    ========================================== -->
+
+    <section
+        id="unlock-screen"
+        class="screen"
+    >
+
+        <div class="unlock-content">
+
+
+            <div class="unlock-glow"></div>
+
+
+            <div class="unlock-icon">
+                🔓
+            </div>
+
+
+            <p class="unlock-label">
+                ✦ SECURITY CLEARED ✦
+            </p>
+
+
+            <h2>
+
+                Surprise
+
+                <span>
+                    Unlocked!
+                </span>
+
+            </h2>
+
+
+            <p class="unlock-text">
+                You defeated the final security layer.
+            </p>
+
+
+            <p class="unlock-subtext">
+                But your real surprise is waiting... ❤️
+            </p>
+
+
+            <div class="unlock-divider">
+
+                <span></span>
+
+                ✦
+
+                <span></span>
+
+            </div>
+
+
+            <button
+                id="surprise-btn"
+                class="primary-btn unlock-btn"
+                type="button"
+            >
+                ✨ OPEN MY SURPRISE
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         BIRTHDAY WELCOME SCREEN
+    ========================================== -->
+
+    <section
+        id="welcome-screen"
+        class="birthday-screen"
+    >
+
+        <!-- Floating Hearts -->
+
+        <div
+            class="floating-hearts"
+            aria-hidden="true"
+        >
+
+            <span>💗</span>
+            <span>💕</span>
+            <span>💖</span>
+            <span>💗</span>
+            <span>💞</span>
+
+        </div>
+
+
+        <!-- Floating Glitters -->
+
+        <div
+            class="floating-glitters"
+            aria-hidden="true"
+        >
+
+            <span>✦</span>
+            <span>✨</span>
+            <span>⋆</span>
+            <span>✧</span>
+            <span>✨</span>
+            <span>⋆</span>
+
+        </div>
+
+
+        <!-- Welcome Card -->
+
+        <div class="welcome-card">
+
+            <div class="welcome-icon">
+                🎉
+            </div>
+
+
+            <h1>
+                Oii.... Edhu en small surprise 😅
+            </h1>
+
+
+            <p class="welcome-name">
+                Happy Birthday,
+                <span class="highlight">
+                    POOKIE🎀
+                </span>!
+            </p>
+
+
+            <p class="welcome-text">
+                I made this little website specially
+                for you...😅🙄
+            </p>
+
+
+            <!-- IMPORTANT:
+                 This is now a BUTTON -->
+
+            <button
+                id="welcome-surprise-btn"
+                class="welcome-message"
+                type="button"
+            >
+                CLICK HERE IS A SURPRISE FOR YOU 💖
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SNAPCHAT STORY
+    ========================================== -->
+
+    <section
+        id="story-screen"
+        class="birthday-screen"
+    >
+
+        <div class="story-page">
+
+
+            <!-- Floating Hearts -->
+
+            <div
+                class="floating-hearts"
+                aria-hidden="true"
+            >
+
+                <span>💗</span>
+                <span>💕</span>
+                <span>💖</span>
+                <span>💞</span>
+                <span>💗</span>
+
+            </div>
+
+
+            <!-- Floating Glitters -->
+
+            <div
+                class="floating-glitters"
+                aria-hidden="true"
+            >
+
+                <span>✦</span>
+                <span>✨</span>
+                <span>⋆</span>
+                <span>✧</span>
+
+            </div>
+
+
+
+            <!-- STORY HEADER -->
+
+            <div class="story-header">
+
+                <div class="story-phone">
+                    📱
+                </div>
+
+                <h1>
+                    A Snapchat Story
+                </h1>
+
+                <div class="story-heart">
+                    💖
+                </div>
+
+            </div>
+
+
+
+            <!-- STORY CARDS -->
+
+            <div class="story-cards">
+
+
+                <!-- CARD 1 -->
+
+                <button
+                    class="story-card"
+                    type="button"
+                    data-story="story-1"
+                >
+
+                    <div class="story-card-title">
+                        🌸 The Day How i found you💖
+                    </div>
+
+                    <div
+                        class="story-card-text"
+                        id="story-1"
+                    >
+                        December 26, 2025… just one accidental snap request. 
+                        I thought nothing of it then… but somehow, 
+                        that little moment became the beginning of a story I never expected.💗✨
+                    </div>
+
+                    <span class="story-tap">
+                        Tap to reveal ✨
+                    </span>
+
+                </button>
+
+
+
+                <!-- CARD 2 -->
+
+                <button
+                    class="story-card"
+                    type="button"
+                    data-story="story-2"
+                >
+
+                    <div class="story-card-title">
+                        ✨ The Girl Who Doesn't Know, How She's Beautiful
+                    </div>
+
+                    <div
+                        class="story-card-text"
+                        id="story-2"
+                    >
+                        Nee azhaga illa nu neaikalam but...
+                        En kannuku nee evlo azhaga theriura...🫠🫠🫠
+                    </div>
+
+                    <span class="story-tap">
+                        Tap to reveal ✨
+                    </span>
+
+                </button>
+
+
+
+                <!-- CARD 3 -->
+
+                <button
+                    class="story-card"
+                    type="button"
+                    data-story="story-3"
+                >
+
+                    <div class="story-card-title">
+                        📸 Favorite Snap
+                    </div>
+
+                    <div
+                        class="story-card-text"
+                        id="story-3"
+                    >
+                        Nee send panna each and every selfie snap
+                        um ennaku Favourite dhaan😌
+                      💕
+                    </div>
+
+                    <span class="story-tap">
+                        Tap to reveal ✨
+                    </span>
+
+                </button>
+
+
+
+                <!-- CARD 4 -->
+
+                <button
+                    class="story-card"
+                    type="button"
+                    data-story="story-4"
+                >
+
+                    <div class="story-card-title">
+                        ✨ Today
+                    </div>
+
+                    <div
+                        class="story-card-text"
+                        id="story-4"
+                    >
+                        Ivlo naal la neraya chinna chinna moments… 
+                        adhellam serndhu dhaan nee ennaku special ah irukura…💖
+                    </div>
+
+                    <span class="story-tap">
+                        Tap to reveal ✨
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- STORY CONTINUE -->
+
+            <button
+    id="continue-journey-btn"
+    class="journey-btn"
+    type="button"
+>
+    📸 Continue The Journey
+</button>
+
+
+        </div>
+
+    </section>
+
+<!-- =========================================
+     MEMORIES SCREEN
+========================================= -->
+
+<!-- =========================================
+     BEAUTIFUL MEMORIES
+========================================= -->
+
+<section id="memories-screen" class="screen">
+
+    <div class="memories-page">
+
+        <!-- TITLE -->
+        <div class="memories-title">
+            <h2>Beautiful<br>Memories 💗</h2>
+        </div>
+
+
+        <!-- TOP PHOTOS -->
+        <div class="memory-polaroids top-polaroids">
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo1.jpg" alt="Memory 1">
+            </div>
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo2.jpg" alt="Memory 2">
+            </div>
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo3.jpg" alt="Memory 3">
+            </div>
+
+        </div>
+
+
+        <!-- HEART DECORATIONS -->
+        <div class="heart-decoration heart-left">
+            ♡
+        </div>
+
+        <div class="heart-decoration heart-right">
+            ♡
+        </div>
+
+
+        <!-- CENTER HEART MEMORY -->
+        <div class="main-memory">
+
+            <div class="heart-photo">
+
+                <svg
+                    class="heart-svg-defs"
+                    width="0"
+                    height="0"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <defs>
+                        <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+                            <path d="M0.5,0.94
+                                     C0.16,0.72 0,0.5 0,0.32
+                                     C0,0.14 0.14,0 0.30,0
+                                     C0.40,0 0.47,0.06 0.5,0.15
+                                     C0.53,0.06 0.60,0 0.70,0
+                                     C0.86,0 1,0.14 1,0.32
+                                     C1,0.5 0.84,0.72 0.5,0.94 Z" />
+                        </clipPath>
+                    </defs>
+                </svg>
+
+                <img
+                    id="memory-heart-image"
+                    src="assets/images/memories/photo1.jpg"
+                    alt="Beautiful Memory"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- CAPTION -->
+        <div class="memory-caption">
+
+            <h3 id="memory-caption-title">
+                Cute Memory 💕
+            </h3>
+
+            <p id="memory-caption-text">
+                A little moment that still makes me smile whenever I see it... ❤️
+            </p>
+
+        </div>
+
+
+        <!-- DOTS -->
+        <div class="memory-dots">
+
+            <span class="memory-dot active"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+            <span class="memory-dot"></span>
+
+        </div>
+
+
+        <!-- BOTTOM PHOTOS -->
+        <div class="memory-polaroids bottom-polaroids">
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo4.jpg" alt="Memory 4">
+            </div>
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo5.jpg" alt="Memory 5">
+            </div>
+
+            <div class="memory-polaroid">
+                <img src="assets/images/memories/photo6.jpg" alt="Memory 6">
+            </div>
+
+        </div>
+
+
+        <!-- CONTINUE BUTTON -->
+        <button
+            id="memories-continue-btn"
+            class="memories-continue-btn"
+            type="button"
+        >
+            💕 Continue To The Candle ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CANDLE SCREEN
+========================================= -->
+
+<section id="candle-screen" class="screen">
+
+    <div class="candle-page">
+
+        <!-- Floating Hearts -->
+        <div class="floating-hearts" aria-hidden="true">
+            <span>💗</span>
+            <span>💕</span>
+            <span>💖</span>
+            <span>💞</span>
+            <span>💗</span>
+        </div>
+
+        <!-- Floating Glitters -->
+        <div class="floating-glitters" aria-hidden="true">
+            <span>✦</span>
+            <span>✨</span>
+            <span>⋆</span>
+            <span>✧</span>
+            <span>✨</span>
+            <span>⋆</span>
+        </div>
+
+
+        <!-- TITLE -->
+        <div class="candle-title">
+            <p class="candle-label">✦ MAKE A WISH ✦</p>
+            <h2>Time To Blow<br>The Candles 🕯️</h2>
+        </div>
+
+
+        <!-- CAKE -->
+        <div class="cake-wrap">
+
+            <div class="candles-row">
+
+                <div class="candle">
+                    <div class="flame-wrap">
+                        <div class="flame"></div>
+                        <div class="flame-glow"></div>
+                    </div>
+                    <div class="wick"></div>
+                    <div class="candle-stick"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame-wrap">
+                        <div class="flame"></div>
+                        <div class="flame-glow"></div>
+                    </div>
+                    <div class="wick"></div>
+                    <div class="candle-stick"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame-wrap">
+                        <div class="flame"></div>
+                        <div class="flame-glow"></div>
+                    </div>
+                    <div class="wick"></div>
+                    <div class="candle-stick"></div>
+                </div>
+
+            </div>
+
+            <div class="cake">
+                <div class="cake-top">
+                    <span class="drip drip-1"></span>
+                    <span class="drip drip-2"></span>
+                    <span class="drip drip-3"></span>
+                    <span class="drip drip-4"></span>
+                </div>
+                <div class="cake-layer cake-layer-1"></div>
+                <div class="cake-layer cake-layer-2"></div>
+                <div class="cake-plate"></div>
+            </div>
+
+        </div>
+
+
+        <!-- COUNTDOWN -->
+        <div id="candle-countdown" class="candle-countdown">3</div>
+
+        <p id="candle-instruction" class="candle-instruction">
+            Tap the cake and make a wish 💫
+        </p>
+
+
+        <!-- BLOW BUTTON -->
+        <button
+            id="blow-candle-btn"
+            class="blow-candle-btn"
+            type="button"
+        >
+            🕯️ Blow The Candles
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CELEBRATION SCREEN
+     The joy beat between the candle wish and
+     the quieter final message.
+========================================= -->
+
+<section id="celebration-screen" class="screen">
+
+    <div class="celebration-page">
+
+        <!-- Floating Hearts -->
+        <div class="floating-hearts" aria-hidden="true">
+            <span>💗</span>
+            <span>💕</span>
+            <span>💖</span>
+            <span>💞</span>
+            <span>💗</span>
+        </div>
+
+        <!-- Floating Glitters -->
+        <div class="floating-glitters" aria-hidden="true">
+            <span>✦</span>
+            <span>✨</span>
+            <span>⋆</span>
+            <span>✧</span>
+        </div>
+
+        <!-- Soft background glow -->
+        <div class="celebration-glow" aria-hidden="true"></div>
+
+        <!-- Confetti -->
+        <div class="celebration-confetti" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span>
+        </div>
+
+        <!-- Soft memory-photo flashes -->
+        <div class="celebration-photo-flash" aria-hidden="true">
+            <img src="assets/images/memories/photo1.jpg" class="cf-photo cf-photo-1" alt="">
+            <img src="assets/images/memories/photo6.jpg" class="cf-photo cf-photo-2" alt="">
+            <img src="assets/images/memories/photo8.jpg" class="cf-photo cf-photo-3" alt="">
+        </div>
+
+        <!-- Main content -->
+        <div class="celebration-content">
+
+            <div class="celebration-icon">🎂</div>
+
+            <h1 class="celebration-headline">
+                Happy Birthday!
+            </h1>
+
+            <p class="celebration-subtext">
+                ✨ 🎉 💗
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FINAL BIRTHDAY MESSAGE
+========================================= -->
+<section id="final-screen" class="screen">
+<!-- Floating Hearts -->
+<div class="final-hearts" aria-hidden="true">
+
+    <span class="floating-heart heart-1">💕</span>
+    <span class="floating-heart heart-2">💗</span>
+    <span class="floating-heart heart-3">💖</span>
+    <span class="floating-heart heart-4">💓</span>
+    <span class="floating-heart heart-5">💕</span>
+    <span class="floating-heart heart-6">💗</span>
+    <span class="floating-heart heart-7">💖</span>
+    <span class="floating-heart heart-8">💓</span>
+    <span class="floating-heart heart-9">💕</span>
+    <span class="floating-heart heart-10">💗</span>
+    <span class="floating-heart heart-11">💖</span>
+    <span class="floating-heart heart-12">💓</span>
+
+</div>
+
+<!-- Floating Glitters -->
+<div class="final-glitters" aria-hidden="true">
+
+    <span class="floating-glitter glitter-1">✦</span>
+    <span class="floating-glitter glitter-2">✧</span>
+    <span class="floating-glitter glitter-3">✨</span>
+    <span class="floating-glitter glitter-4">⋆</span>
+    <span class="floating-glitter glitter-5">✦</span>
+    <span class="floating-glitter glitter-6">✧</span>
+    <span class="floating-glitter glitter-7">✨</span>
+    <span class="floating-glitter glitter-8">⋆</span>
+
+</div>
+    <div class="final-page">
+
+        <!-- =====================================
+             FLOATING HEARTS
+        ====================================== -->
+
+    
+
+
+        <!-- =====================================
+             8 PHOTO COLLAGE
+        ====================================== -->
+
+        <div class="final-photo-collage">
+
+            <!-- PHOTO 1 -->
+            <div class="final-photo final-photo-1">
+                <img
+                    src="assets/images/memories/photo1.jpg"
+                    alt="Memory 1"
+                >
+            </div>
+
+            <!-- PHOTO 2 -->
+            <div class="final-photo final-photo-2">
+                <img
+                    src="assets/images/memories/photo2.jpg"
+                    alt="Memory 2"
+                >
+            </div>
+
+            <!-- PHOTO 3 -->
+            <div class="final-photo final-photo-3">
+                <img
+                    src="assets/images/memories/photo3.jpg"
+                    alt="Memory 3"
+                >
+            </div>
+
+            <!-- PHOTO 4 -->
+            <div class="final-photo final-photo-4">
+                <img
+                    src="assets/images/memories/photo4.jpg"
+                    alt="Memory 4"
+                >
+            </div>
+
+            <!-- PHOTO 5 -->
+            <div class="final-photo final-photo-5">
+                <img
+                    src="assets/images/memories/photo5.jpg"
+                    alt="Memory 5"
+                >
+            </div>
+
+            <!-- PHOTO 6 -->
+            <div class="final-photo final-photo-6">
+                <img
+                    src="assets/images/memories/photo6.jpg"
+                    alt="Memory 6"
+                >
+            </div>
+
+            <!-- PHOTO 7 -->
+            <div class="final-photo final-photo-7">
+                <img
+                    src="assets/images/memories/photo7.jpg"
+                    alt="Memory 7"
+                >
+            </div>
+
+            <!-- PHOTO 8 -->
+            <div class="final-photo final-photo-8">
+                <img
+                    src="assets/images/memories/photo8.jpg"
+                    alt="Memory 8"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+     FINAL HEARTFELT BIRTHDAY MESSAGE
+====================================== -->
+
+<div class="final-center">
+
+    <div class="final-cake">
+        🎂
+    </div>
+
+    <p class="final-small-title">
+        ✨ A Little Message For You ✨
+    </p>
+
+    <h1 class="final-title">
+        Happy Birthday! ❤️
+    </h1>
+
+    <div class="final-message">
+
+        <p>
+            <strong>Oiii Shan…</strong>
+            wish you many more happy returns of the day! 🎂❤️
+        </p>
+
+        <p>
+            Snapchat-la 1000 notifications vandhaalum,
+            unkitta irundhu varra oru notification dhaan
+            enakku eppavume special. 🫠
+        </p>
+
+        <p>
+            Unkooda kedaicha indha bond…
+            en life-la unexpected-ah kedaicha
+            oru beautiful magic maari. ✨
+        </p>
+
+        <p>
+            Indha bond enakku evlo special nu
+            words-la solla mudiyadhu…
+            but one day maybe solluven. 😅❤️
+        </p>
+
+        <p class="final-last-line">
+            Once again...
+            <br>
+            <strong>
+                Happiest Birthday to my Pookie! 🫠🎂❤️
+            </strong>
+        </p>
+
+    </div>
+
+    <div class="final-decorations">
+        ✨ 💗 ✨
+    </div>
+
+    <button
+        id="final-home-btn"
+        class="final-home-btn"
+        type="button"
+    >
+        🏠 Home
+    </button>
+
+</div>
+
+
+<!-- =====================================
+     THANOS + INFINITY GAUNTLET
+     Replaces the Home button visually.
+     Tapping the gauntlet triggers a snap
+     transition back to the start screen.
+====================================== -->
+
+<div class="thanos-dock" id="thanos-dock">
+
+    <img
+        src="assets/images/thanos-gauntlet.png"
+        alt=""
+        class="thanos-figure"
+        draggable="false"
+    >
+
+    <span class="thanos-flash" aria-hidden="true"></span>
+
+    <span class="thanos-particles" aria-hidden="true">
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+        <span class="thanos-particle"></span>
+    </span>
+<div class="gauntlet-hint" aria-hidden="true">
+    <span class="gauntlet-arrow">←</span>
+<span class="gauntlet-hint-text">TAP ON The GAUNTLET TO SNAP 🫰</span>
+</div>
+    <button
+        id="thanos-gauntlet-btn"
+        class="thanos-gauntlet-hitbox"
+        type="button"
+        aria-label="Snap back home"
+    ></button>
+
+</div>
+</section>
+</main>
+
+
+<!-- =========================================
+     AUDIO SYSTEM (architecture only)
+     No music asset exists yet - assets/music/
+     is empty. This element and toggle are
+     wired to fail silently and stay hidden
+     until a real track is dropped in at
+     assets/music/theme.mp3. Nothing forces
+     autoplay; playback only ever starts from
+     a real tap (the Start button).
+========================================= -->
+
+<audio
+    id="bg-music"
+    src="assets/music/theme.mp3"
+    loop
+    preload="none"
+></audio>
+
+<button
+    id="music-toggle-btn"
+    class="music-toggle-btn is-hidden"
+    type="button"
+    aria-label="Toggle background music"
+>
+    🔊
+</button>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/app.js"></script>
+
+
+</body>
+
+</html>
