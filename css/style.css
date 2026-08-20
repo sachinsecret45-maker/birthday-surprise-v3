@@ -6496,7 +6496,7 @@ body {
     left: 50% !important;
     bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
 
-    height: clamp(120px, 34vw, 155px) !important;
+    height: clamp(145px, 38vw, 180px) !important;
     width: auto !important;
 
     transform: translateX(-50%) !important;
@@ -6652,94 +6652,115 @@ body {
     }
 }
 /* =========================================
-   🫰 GAUNTLET — TAP TO SNAP HINT
+   🫰 GAUNTLET TAP HINT
 ========================================= */
 
 #final-screen .gauntlet-hint {
     position: absolute !important;
 
-    /* RIGHT side of Thanos's gauntlet */
-    left: 92% !important;
-    top: 8% !important;
+    /*
+       HINT BOX TO THE RIGHT OF THANOS
+    */
+    left: 100% !important;
+    top: 5% !important;
+
+    width: 125px !important;
+    min-width: 125px !important;
+    max-width: 125px !important;
 
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
+
     align-items: center !important;
+    justify-content: flex-start !important;
 
-    gap: 3px !important;
+    gap: 5px !important;
 
-    width: max-content !important;
+
+    box-sizing: border-box !important;
 
     pointer-events: none !important;
+
     z-index: 500 !important;
+
+    
 
     animation: gauntletHintFloat 1.8s ease-in-out infinite !important;
 }
 
-/* -----------------------------------------
-   MOVING ARROW
------------------------------------------ */
 
-.gauntlet-arrow {
-    display: block;
+/* =========================================
+   ← ARROW
+========================================= */
 
-    font-family: Arial, sans-serif;
+#final-screen .gauntlet-arrow {
 
-    font-size: 42px;
-    font-weight: 900;
+    flex: 0 0 auto !important;
 
-    line-height: 0.8;
+    width: 20px !important;
 
-    /* Point LEFT toward the gauntlet */
-    transform: rotate(0deg);
+    font-family: Arial, sans-serif !important;
 
-    color: #ffffff;
+    font-size: 24px !important;
 
-    text-shadow:
-        0 0 5px #ff4fa3,
-        0 0 10px #ff4fa3,
-        0 0 18px #c44cff,
-        0 0 28px rgba(196, 76, 255, 0.8);
+    font-weight: 900 !important;
 
-    /* Arrow movement */
-    animation: arrowPoint 1.1s ease-in-out infinite;
-}
+    line-height: 1 !important;
 
+    text-align: center !important;
 
-/* -----------------------------------------
-   TAP TO SNAP TEXT
------------------------------------------ */
-
-.gauntlet-hint-text {
-
-    font-family: "Poppins", sans-serif;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    white-space: nowrap;
-
-    color: #ffffff;
-
-    text-align: center;
+    color: #ffffff !important;
 
     text-shadow:
         0 0 5px #ff4fa3,
-        0 0 10px #ff4fa3,
-        0 0 18px #c44cff,
-        0 0 25px rgba(255, 79, 163, 0.8);
+        0 0 10px #c44cff !important;
 
-    animation: textGlow 1.8s ease-in-out infinite;
+    animation: gauntletArrowMove 1.1s ease-in-out infinite !important;
 }
 
 
 /* =========================================
-   ARROW MOVES TOWARD THE GAUNTLET
+   TAP TEXT
 ========================================= */
 
-@keyframes arrowPoint {
+#final-screen .gauntlet-hint-text {
+
+    flex: 1 1 auto !important;
+
+    width: auto !important;
+
+    max-width: 92px !important;
+
+    font-family: "Poppins", sans-serif !important;
+
+    font-size: 11px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.55 !important;
+
+    letter-spacing: 0.3px !important;
+
+    text-align: left !important;
+
+    white-space: normal !important;
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 0 5px #ff4fa3,
+        0 0 10px #c44cff,
+        0 0 18px rgba(196, 76, 255, 0.8) !important;
+
+    animation: gauntletTextGlow 1.8s ease-in-out infinite !important;
+}
+
+
+/* =========================================
+   ARROW MOVEMENT
+========================================= */
+
+@keyframes gauntletArrowMove {
 
     0%,
     100% {
@@ -6747,7 +6768,7 @@ body {
     }
 
     50% {
-        transform: translateX(-8px);
+        transform: translateX(-5px);
     }
 
 }
@@ -6757,11 +6778,11 @@ body {
    TEXT GLOW
 ========================================= */
 
-@keyframes textGlow {
+@keyframes gauntletTextGlow {
 
     0%,
     100% {
-        opacity: 0.75;
+        opacity: 0.8;
     }
 
     50% {
@@ -6772,10 +6793,10 @@ body {
 
 
 /* =========================================
-   WHOLE HINT FLOAT
+   HINT FLOAT
 ========================================= */
 
-@keyframes hintFloat {
+@keyframes gauntletHintFloat {
 
     0%,
     100% {
@@ -6783,30 +6804,49 @@ body {
     }
 
     50% {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
     }
 
 }
 
 
 /* =========================================
-   MOBILE
+   📱 MOBILE
 ========================================= */
 
 @media (max-width: 480px) {
 
-    .gauntlet-hint {
-        right: -5px;
-        bottom: 80px;
+    #final-screen .gauntlet-hint {
+
+        left: 100% !important;
+
+        top: 5% !important;
+
+        width: 118px !important;
+        min-width: 118px !important;
+        max-width: 118px !important;
+
+        padding: 6px 5px !important;
+
+        gap: 3px !important;
     }
 
-    .gauntlet-arrow {
-        font-size: 38px;
+
+    #final-screen .gauntlet-arrow {
+
+        width: 18px !important;
+
+        font-size: 21px !important;
     }
 
-    .gauntlet-hint-text {
-        font-size: 10px;
-        letter-spacing: 0.8px;
+
+    #final-screen .gauntlet-hint-text {
+
+        max-width: 88px !important;
+
+        font-size: 9px !important;
+
+        line-height: 1.5 !important;
     }
 
 }
