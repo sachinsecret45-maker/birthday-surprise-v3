@@ -6929,3 +6929,95 @@ body {
 
     z-index: 100 !important;
 }
+/* =========================================
+   💕 MEMORIES PAGE — FULL PAGE SCROLL
+   ========================================= */
+
+/* The whole memories screen can scroll */
+#memories-screen {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100dvh !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    display: block !important;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+
+    box-sizing: border-box !important;
+}
+
+/* Main memories content */
+#memories-screen .memories-page {
+    width: 100% !important;
+    min-height: 100% !important;
+
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    box-sizing: border-box !important;
+
+    /* Extra space so bottom content is never hidden */
+    padding-top: 20px !important;
+    padding-bottom: 80px !important;
+}
+
+/* Continue button */
+#memories-screen .memories-continue-btn {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: calc(100% - 40px) !important;
+    max-width: 360px !important;
+
+    min-height: 62px !important;
+
+    margin: 25px auto 40px auto !important;
+
+    padding: 0 20px !important;
+
+    box-sizing: border-box !important;
+
+    flex-shrink: 0 !important;
+
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    z-index: 100 !important;
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+
+    #memories-screen .memories-page {
+        padding-bottom: 70px !important;
+    }
+
+    #memories-screen .memories-continue-btn {
+        width: calc(100% - 25px) !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        font-size: 16px !important;
+    }
+}
+
+/* Prevent horizontal scrolling */
+#memories-screen * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
