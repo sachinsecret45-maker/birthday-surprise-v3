@@ -6877,3 +6877,55 @@ body {
 
     z-index: 50 !important;
 }
+/* =========================================
+   💕 MEMORIES PAGE — FULL SCROLL FIX
+   Allows the entire Memories content,
+   including Continue To The Candle button,
+   to be reached on every screen size.
+========================================= */
+
+#memories-screen {
+    height: 100dvh !important;
+    min-height: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+
+    padding-top: 20px !important;
+    padding-bottom: 80px !important;
+
+    box-sizing: border-box !important;
+
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+}
+
+#memories-screen .memories-page {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    flex-shrink: 0 !important;
+
+    padding-bottom: 80px !important;
+
+    box-sizing: border-box !important;
+}
+
+#memories-screen .memories-continue-btn {
+    display: flex !important;
+
+    flex-shrink: 0 !important;
+
+    position: relative !important;
+
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+
+    z-index: 100 !important;
+}
