@@ -6496,7 +6496,7 @@ body {
     left: 50% !important;
     bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
 
-    height: clamp(145px, 38vw, 180px) !important;
+    height: clamp(175px, 52vw, 220px) !important;
     width: auto !important;
 
     transform: translateX(-50%) !important;
