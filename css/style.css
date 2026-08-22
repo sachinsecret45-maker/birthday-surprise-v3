@@ -6850,3 +6850,30 @@ body {
     }
 
 }
+/* =========================================
+   💞 MEMORIES - CONTINUE TO CANDLE
+   RESPONSIVE SCROLL FIX
+========================================= */
+
+#memories-screen {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    padding-bottom: 100px !important;
+
+    box-sizing: border-box !important;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+#memories-screen .memories-continue-btn {
+    position: relative !important;
+
+    display: flex !important;
+
+    flex-shrink: 0 !important;
+
+    margin-bottom: 40px !important;
+
+    z-index: 50 !important;
+}
