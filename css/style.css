@@ -6641,10 +6641,12 @@ body {
     filter: blur(6px);
     transform: scale(0.97);
 
+    /* was 8s — 8x longer than the ~0.8-1.2s the
+       spec asked for, made the exit feel stuck. */
     transition:
-        opacity 8s ease-in-out,
-        filter 8s ease-in-out,
-        transform 8s ease-in-out;
+        opacity 1s ease-in-out,
+        filter 1s ease-in-out,
+        transform 1s ease-in-out;
 }
 @media (max-width: 360px) {
     #final-screen .thanos-dock {
@@ -6933,24 +6935,24 @@ body {
    💕 MEMORIES PAGE — FULL PAGE SCROLL
    ========================================= */
 
-/* The whole memories screen can scroll */
-#memories-screen {
-    position: fixed !important;
-    inset: 0 !important;
+/* ROOT CAUSE (removed): this block previously forced
+   #memories-screen to `display: block !important` and
+   `position: fixed !important`. An ID selector with
+   !important beats both `.screen { display: none; }`
+   and `.screen.active { display: flex; }` — so it made
+   Memories permanently visible, full-viewport, on top
+   of every other screen (Batman, Message, Vault, Welcome,
+   Story) regardless of which one was actually active.
+   That's what broke the earlier screens.
 
-    width: 100% !important;
-    height: 100dvh !important;
-
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-
-    display: block !important;
-
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-
-    box-sizing: border-box !important;
-}
+   The actual scrolling fix from the PREVIOUS commit
+   ("Fix memories page scrolling", a few lines above this
+   comment: height:100dvh + align-items:flex-start) was
+   already correct and is untouched — it doesn't force
+   display/position, so it only takes effect once
+   .screen.active legitimately applies. Nothing else
+   needs to change; this block was pure duplication that
+   happened to also be broken. */
 
 /* Main memories content */
 #memories-screen .memories-page {
@@ -7020,4 +7022,50 @@ body {
 #memories-screen * {
     max-width: 100%;
     box-sizing: border-box;
+}
+/* =========================================================
+   CANDLE SCREEN — SAME SCROLL FIX AS MEMORIES
+   Same root cause as the memories-page bug: align-items:
+   center inherited from .screen centers content past both
+   edges when it's taller than the viewport, and "Blow The
+   Candles" can end up unreachable on shorter phones.
+========================================================= */
+
+#candle-screen {
+    height: 100dvh;
+    min-height: 0;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    padding-top: 20px;
+    padding-bottom: 80px;
+
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+}
+
+#candle-screen .candle-page {
+    width: 100%;
+
+    height: auto;
+    min-height: max-content;
+
+    flex-shrink: 0;
+
+    padding-bottom: 40px;
+
+    box-sizing: border-box;
+}
+
+#candle-screen .blow-candle-btn {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
 }

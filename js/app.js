@@ -2323,7 +2323,7 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
                     returnToStartFromFinal();
 
                 },
-                220 + 8000
+                220 + 1000
             );
 
             thanosTransitionTimers.push(
@@ -2355,7 +2355,7 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
                     clearThanosTransitionTimers();
 
                 },
-                220 + 8000 + 400
+                220 + 1000 + 400
             );
 
             thanosTransitionTimers.push(
