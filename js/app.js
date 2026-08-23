@@ -2258,9 +2258,6 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
         "click",
         () => {
 
-            /* Rapid-tap protection: the transition
-               may only ever run once. */
-
             if (thanosTransitionStarted) {
 
                 return;
@@ -2278,7 +2275,7 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
             );
 
 
-            /* A) snap flash (~0.2s) */
+            /* A) Snap flash */
 
             thanosDock.classList.add(
                 "is-flashing"
@@ -2292,9 +2289,8 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
                         "is-flashing"
                     );
 
-                    /* B) final page fades/disintegrates
-                       (~1s), particles drift from the
-                       gauntlet at the same time */
+                    /* B) Very slow final-page
+                       fade/disintegration */
 
                     thanosDock.classList.add(
                         "is-snapping"
@@ -2313,17 +2309,16 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
             );
 
 
+            /* C) Wait for the complete
+               8-second fade before returning home */
+
             const returnTimer = setTimeout(
                 () => {
-
-                    /* C) reuse the EXISTING home/reset
-                       logic — no competing navigation
-                       system. */
 
                     returnToStartFromFinal();
 
                 },
-                220 + 1000
+                220 + 8000
             );
 
             thanosTransitionTimers.push(
@@ -2331,12 +2326,10 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
             );
 
 
+            /* D) Cleanup after returning home */
+
             const cleanupTimer = setTimeout(
                 () => {
-
-                    /* D) settle back into a clean state
-                       so the whole experience can be
-                       replayed from the start. */
 
                     finalScreen.classList.remove(
                         "thanos-snap-out"
@@ -2355,7 +2348,7 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
                     clearThanosTransitionTimers();
 
                 },
-                220 + 1000 + 400
+                220 + 8000 + 400
             );
 
             thanosTransitionTimers.push(
@@ -2366,7 +2359,6 @@ if (thanosGauntletButton && thanosDock && finalScreen) {
     );
 
 }
-
 
 /* =========================================
    FINAL DEBUG MESSAGE

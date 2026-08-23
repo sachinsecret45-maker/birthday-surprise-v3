@@ -3513,7 +3513,7 @@ body {
     width: 292px;
     height: 14px;
 
-    border-radius: 50%;
+    border-radius: 0%;
 
     background:
         linear-gradient(
@@ -3844,7 +3844,6 @@ body {
 .fp-7 {
     bottom: 12%;
     left: 7%;
-
     transform: rotate(-6deg);
 }
 
@@ -6644,9 +6643,9 @@ body {
     /* was 8s — 8x longer than the ~0.8-1.2s the
        spec asked for, made the exit feel stuck. */
     transition:
-        opacity 1s ease-in-out,
-        filter 1s ease-in-out,
-        transform 1s ease-in-out;
+        opacity 10s ease-in-out,
+        filter 10s ease-in-out,
+        transform 10s ease-in-out;
 }
 @media (max-width: 360px) {
     #final-screen .thanos-dock {
@@ -7024,48 +7023,35 @@ body {
     box-sizing: border-box;
 }
 /* =========================================================
-   CANDLE SCREEN — SAME SCROLL FIX AS MEMORIES
-   Same root cause as the memories-page bug: align-items:
-   center inherited from .screen centers content past both
-   edges when it's taller than the viewport, and "Blow The
-   Candles" can end up unreachable on shorter phones.
+   FINAL PAGE — SMALL POSITION + TEXT CLARITY FIX
+   Only affects the final birthday page.
 ========================================================= */
 
-#candle-screen {
-    height: 100dvh;
-    min-height: 0;
-
-    overflow-x: hidden;
-    overflow-y: scroll;
-
-    align-items: flex-start;
-    justify-content: flex-start;
-
-    padding-top: 20px;
-    padding-bottom: 80px;
-
-    box-sizing: border-box;
-
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-    touch-action: pan-y;
+#final-screen .final-center {
+    top: 46% !important;
 }
 
-#candle-screen .candle-page {
-    width: 100%;
-
-    height: auto;
-    min-height: max-content;
-
-    flex-shrink: 0;
-
-    padding-bottom: 40px;
-
-    box-sizing: border-box;
+/* Move only the Happy Birthday title slightly upward */
+#final-screen .final-title {
+    transform: translateY(-3px) !important;
 }
 
-#candle-screen .blow-candle-btn {
-    flex-shrink: 0;
-    position: relative;
-    z-index: 100;
+/* Make the birthday message just a little easier to read */
+#final-screen .final-message p {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+}
+
+/* Keep the first greeting slightly emphasized */
+#final-screen .final-message p:first-child strong {
+    font-size: 13px !important;
+}
+
+/* Keep the final birthday line balanced */
+#final-screen .final-message .final-last-line {
+    font-size: 12.5px !important;
+}
+
+#final-screen .final-message .final-last-line strong {
+    font-size: 13px !important;
 }
